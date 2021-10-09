@@ -49,10 +49,7 @@ namespace Classroom
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
+                
                 endpoints.MapControllerRoute(
                        name: "Index",
                        pattern: "{controller=Index}/{action=Index}"
