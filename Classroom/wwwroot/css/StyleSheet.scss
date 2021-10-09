@@ -1,2 +1,76 @@
 ﻿body {
+    font-family: 'Noto Sans Mono', monospace;
+    margin:0px;
+    padding:0px;
 }
+.centerText{
+    text-align:center;
+}
+
+.logoBackground {
+    background-color:#fac564;
+}
+
+.logoBlock{
+    height:100px;
+}
+
+.logoText{
+    font-size:2em;
+    font-weight:600;
+}
+
+.logoTextBlock {
+    padding-top: 25px;
+}
+
+.blueText{
+    color:blue;
+}
+
+.yellowText{
+    color:yellowgreen;
+}
+
+.orangeText{
+    color:orangered;
+}
+
+.flex{
+    display:flex;
+    justify-content:space-between;
+}
+
+.menuBlock{
+    height:50px;
+}
+
+.menuUlStyle {
+    margin: 0px;
+    padding: 0px;
+
+    .menuLiStyle {
+        list-style-type: none;
+    }
+
+    .aStyle {
+        text-decoration: none;
+    }
+}
+
+.anderMenuLine{
+    width:100%;
+    border:1px solid grey;
+}
+
+.menuText{
+    font-size:1.4em;
+    font-weight:300;
+}
+
+
+
+
+
+
+
