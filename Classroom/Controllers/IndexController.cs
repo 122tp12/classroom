@@ -20,12 +20,24 @@ namespace Classroom.Controllers
             accessor = _accessor;
 
         }
-       
+        //сторінка з насками
         public IActionResult Index()
         {
             IndexModel model=new IndexModel(accessor);
 
             return View(model);
+        }
+        //окремий таск
+        public IActionResult Task()
+        {
+            
+            return View();
+        }
+        //всі завдання які треба зробити
+        public IActionResult Tasks()
+        {
+
+            return View();
         }
     }
 }

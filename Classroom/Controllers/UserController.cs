@@ -16,7 +16,7 @@ namespace Classroom.Controllers
             accessor = _accessor;
 
         }
-
+        //інформація профіля
         public IActionResult Index()
         {
             
