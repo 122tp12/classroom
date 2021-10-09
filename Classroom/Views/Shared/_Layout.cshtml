@@ -10,27 +10,23 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>View</title>
+    <link rel="stylesheet" href="/css/StyleSheet.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@300&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
         <nav>
-            <div class="flexNav">
-                <div class="LogoBlock">
-                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Classroom</a>
-                </div>
-                <div class="MenuBlock">
-                    <ul class="flexNav liStyle">
-                        <li class="">
-                            <a class="" asp-area="" asp-controller="Home" asp-action="Index">Головна</a>
-                        </li>
-
-                    </ul>
+            <div class="centerText logoText logoBackground logoBlock">
+                <div class="logoTextBlock">
+                    <span class="blueText">Cla</span><span class="yellowText">ssr</span><span class="orangeText">oom</span>
                 </div>
             </div>
         </nav>
     </header>
-
-    <div class="MenuContent">
+    <div class="anderMenuLine"></div>
+    <div class="MenuContent" style="min-height: 650px">
         <main role="main" class="">
             @RenderBody()
         </main>
