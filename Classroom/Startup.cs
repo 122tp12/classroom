@@ -57,6 +57,14 @@ namespace Classroom
                        name: "Index",
                        pattern: "{controller=Index}/{action=Index}"
                 );
+                endpoints.MapControllerRoute(
+                       name: "IndexU",
+                       pattern: "{controller=User}/{action=Index}"
+                );
+                endpoints.MapControllerRoute(
+                       name: "IndexRL",
+                       pattern: "{controller=RegLog}/{action=Index}"
+                );
             });
         }
     }
