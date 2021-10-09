@@ -17,6 +17,7 @@ namespace Classroom
         public string Description { get; set; }
         public string Type { get; set; }
         public string FilePaths { get; set; }
+        public DateTime DatePublished { get; set; }
         public int? IdGroup { get; set; }
 
         public virtual Group IdGroupNavigation { get; set; }

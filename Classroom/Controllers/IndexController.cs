@@ -24,20 +24,24 @@ namespace Classroom.Controllers
         public IActionResult Index()
         {
             IndexModel model=new IndexModel(accessor);
-
+            model.getTasks(1);//тут має бути id user, яка буде братись з сесії
             return View(model);
         }
+
+        //всі завдання в групі
+        public IActionResult TasksInGroup()
+        {
+            GroupModel model = new GroupModel();
+            model.getTasks(1);//тут має бути id групи, яка буде братись get запроса
+            return View(model);
+        }
+
         //окремий таск
         public IActionResult Task()
         {
-            
-            return View();
-        }
-        //всі завдання які треба зробити
-        public IActionResult Tasks()
-        {
-
-            return View();
+            TaskModel model = new TaskModel();
+            model.getTask(1);//тут має бути id таска, яка буде братись get запроса
+            return View(model);
         }
     }
 }
