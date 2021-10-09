@@ -60,8 +60,9 @@ namespace Classroom
                 );
                 endpoints.MapControllerRoute(
                        name: "IndexRL",
-                       pattern: "{controller=RegLog}/{action=Index}"
+                       pattern: "{controller=RegAut}/{action=Index}"
                 );
+
             });
         }
     }
