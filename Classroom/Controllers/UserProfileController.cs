@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace Classroom.Controllers
 {
-    public class UserController : Controller
+    public class UserProfileController : Controller
     {
         public IHttpContextAccessor accessor;
         //Just taking accessor for session
-        public UserController(IHttpContextAccessor _accessor)
+        public UserProfileController(IHttpContextAccessor _accessor)
         {
             accessor = _accessor;
 
