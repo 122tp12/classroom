@@ -24,16 +24,25 @@ namespace Classroom.Controllers
         public IActionResult Index()
         {
             IndexModel model=new IndexModel(accessor);
-            model.getTasks(1);//тут має бути id user, яка буде братись з сесії
+            try
+            {
+                model.getTasks(accessor.HttpContext.Session.GetInt32("user").Value);//тут має бути id user, яка буде братись з сесії
+            }
+            catch (Exception ex)
+            {
+                model.getTasks(1);//тимчасово, доки не ма перевірки на те чи залогінений юзер
+            }
             return View(model);
         }
 
+     
+
         //всі завдання в групі
-        [HttpGet]
-        public IActionResult TasksInGroup(int _idGroup)
+        
+        public IActionResult TasksInGroup(int id)
         {
             GroupModel model = new GroupModel();
-            model.getTasks(1);//тут має бути id групи, яка буде братись get запроса
+            model.getTasks(id);//тут має бути id групи, яка буде братись get запроса
             return View(model);
         }
 

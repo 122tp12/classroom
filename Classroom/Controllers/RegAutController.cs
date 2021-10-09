@@ -20,7 +20,12 @@ namespace Classroom.Controllers
         {
             return View();
         }
-        
+        [HttpPost]
+        public IActionResult RegistrationSave()
+        {
+            return Redirect("~/Autoresation");
+        }
+
         public IActionResult Autoresation()
         {
             return View();
