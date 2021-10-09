@@ -29,7 +29,8 @@ namespace Classroom.Controllers
         }
 
         //всі завдання в групі
-        public IActionResult TasksInGroup()
+        [HttpGet]
+        public IActionResult TasksInGroup(int _idGroup)
         {
             GroupModel model = new GroupModel();
             model.getTasks(1);//тут має бути id групи, яка буде братись get запроса
@@ -37,7 +38,8 @@ namespace Classroom.Controllers
         }
 
         //окремий таск
-        public IActionResult Task()
+        [HttpGet]
+        public IActionResult Task(int _idTask)
         {
             TaskModel model = new TaskModel();
             model.getTask(1);//тут має бути id таска, яка буде братись get запроса
