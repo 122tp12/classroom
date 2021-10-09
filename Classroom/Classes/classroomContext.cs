@@ -17,13 +17,17 @@ namespace Classroom
         {
         }
 
+        public virtual DbSet<Group> Groups { get; set; }
+        public virtual DbSet<GroupUser> GroupUsers { get; set; }
+        public virtual DbSet<Reaply> Reaplies { get; set; }
+        public virtual DbSet<Task> Tasks { get; set; }
         public virtual DbSet<User> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-                #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
                 optionsBuilder.UseSqlServer("Server=DESKTOP-QGEEUPD;Database=classroom;Trusted_Connection=True;");
             }
         }
@@ -32,11 +36,102 @@ namespace Classroom
         {
             modelBuilder.HasAnnotation("Relational:Collation", "Cyrillic_General_CI_AS");
 
+            modelBuilder.Entity<Group>(entity =>
+            {
+                entity.ToTable("group");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Description)
+                    .HasColumnType("text")
+                    .HasColumnName("description");
+
+                entity.Property(e => e.IdOwner).HasColumnName("id_owner");
+
+                entity.Property(e => e.Name)
+                    .HasMaxLength(30)
+                    .HasColumnName("name")
+                    .IsFixedLength(true);
+
+                entity.HasOne(d => d.IdOwnerNavigation)
+                    .WithMany(p => p.Groups)
+                    .HasForeignKey(d => d.IdOwner)
+                    .HasConstraintName("FK_group_users");
+            });
+
+            modelBuilder.Entity<GroupUser>(entity =>
+            {
+                entity.ToTable("group_user");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.IdGroup).HasColumnName("id_group");
+
+                entity.Property(e => e.IdUser).HasColumnName("id_user");
+
+                entity.HasOne(d => d.IdGroupNavigation)
+                    .WithMany(p => p.GroupUsers)
+                    .HasForeignKey(d => d.IdGroup)
+                    .HasConstraintName("FK_group_user_group");
+
+                entity.HasOne(d => d.IdUserNavigation)
+                    .WithMany(p => p.GroupUsers)
+                    .HasForeignKey(d => d.IdUser)
+                    .HasConstraintName("FK_group_user_users");
+            });
+
+            modelBuilder.Entity<Reaply>(entity =>
+            {
+                entity.ToTable("reaply");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.IdTask).HasColumnName("id_task");
+
+                entity.Property(e => e.ReaplyPath)
+                    .HasMaxLength(50)
+                    .HasColumnName("reaply_path")
+                    .IsFixedLength(true);
+
+                entity.HasOne(d => d.IdTaskNavigation)
+                    .WithMany(p => p.Reaplies)
+                    .HasForeignKey(d => d.IdTask)
+                    .HasConstraintName("FK_reaply_task");
+            });
+
+            modelBuilder.Entity<Task>(entity =>
+            {
+                entity.ToTable("task");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Description)
+                    .HasColumnType("text")
+                    .HasColumnName("description");
+
+                entity.Property(e => e.IdGroup).HasColumnName("id_group");
+
+                entity.Property(e => e.Name)
+                    .HasMaxLength(30)
+                    .HasColumnName("name")
+                    .IsFixedLength(true);
+
+                entity.Property(e => e.Type)
+                    .HasMaxLength(15)
+                    .HasColumnName("type")
+                    .IsFixedLength(true);
+
+                entity.HasOne(d => d.IdGroupNavigation)
+                    .WithMany(p => p.Tasks)
+                    .HasForeignKey(d => d.IdGroup)
+                    .HasConstraintName("FK_task_group");
+            });
+
             modelBuilder.Entity<User>(entity =>
             {
-                entity.HasNoKey();
-
                 entity.ToTable("users");
+
+                entity.Property(e => e.Id).HasColumnName("id");
 
                 entity.Property(e => e.Description)
                     .HasColumnType("text")
@@ -46,8 +141,6 @@ namespace Classroom
                     .HasMaxLength(30)
                     .HasColumnName("email")
                     .IsFixedLength(true);
-
-                entity.Property(e => e.Id).HasColumnName("id");
 
                 entity.Property(e => e.ImgPath)
                     .HasMaxLength(50)

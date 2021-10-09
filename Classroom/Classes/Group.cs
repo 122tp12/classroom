@@ -5,21 +5,21 @@ using System.Collections.Generic;
 
 namespace Classroom
 {
-    public partial class User
+    public partial class Group
     {
-        public User()
+        public Group()
         {
             GroupUsers = new HashSet<GroupUser>();
-            Groups = new HashSet<Group>();
+            Tasks = new HashSet<Task>();
         }
 
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Email { get; set; }
-        public string ImgPath { get; set; }
         public string Description { get; set; }
+        public int? IdOwner { get; set; }
 
+        public virtual User IdOwnerNavigation { get; set; }
         public virtual ICollection<GroupUser> GroupUsers { get; set; }
-        public virtual ICollection<Group> Groups { get; set; }
+        public virtual ICollection<Task> Tasks { get; set; }
     }
 }
