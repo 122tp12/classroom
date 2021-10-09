@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Classroom.Controllers
 {
+    //контролер для регістрації, авторизації
     public class RegLogController : Controller
     {
         IHttpContextAccessor accessor;
@@ -14,9 +15,15 @@ namespace Classroom.Controllers
         {
             accessor = _accessor;
         }
-        public IActionResult Index()
+        
+        public IActionResult Registration()
         {
             return View();
         }
+        public IActionResult Autoresation()
+        {
+            return View();
+        }
+        
     }
 }
