@@ -26,7 +26,7 @@ namespace Classroom.Controllers
         public IActionResult Index()
         {
 
-            IndexModel model=new IndexModel(accessor);
+            IndexModel model=new IndexModel(accessor, _context);
             try
             {
                 model.getTasks(accessor.HttpContext.Session.GetInt32("user").Value);//тут має бути id user, яка буде братись з сесії
@@ -45,7 +45,7 @@ namespace Classroom.Controllers
         public IActionResult TasksInGroup(int id)
         {
 
-            GroupModel model = new GroupModel();
+            GroupModel model = new GroupModel(accessor, _context);
             try
             {
                 model.getTasks(id, accessor.HttpContext.Session.GetInt32("user").Value);//тут має бути id групи, яка буде братись get запроса
@@ -63,7 +63,7 @@ namespace Classroom.Controllers
         public IActionResult Task(int id)
         {
 
-            TaskModel model = new TaskModel();
+            TaskModel model = new TaskModel(accessor, _context);
             model.getTask(id);//тут має бути id таска, яка буде братись get запроса
 
             return View(model);

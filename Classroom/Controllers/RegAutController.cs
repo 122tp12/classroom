@@ -27,7 +27,7 @@ namespace Classroom.Controllers
         public IActionResult RegistrationSave(String name, String password, String email, String img, String description)
         {
             User u = new User() { Name=name, Password=password, Email=email, ImgPath=img, Description=description};
-            RegistrationModel model = new RegistrationModel();
+            RegistrationModel model = new RegistrationModel(accessor, _context);
             model.saveUser(u);
             return Redirect("~/RegAut/Autoresation");
         }

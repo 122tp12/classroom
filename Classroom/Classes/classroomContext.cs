@@ -141,5 +141,6 @@ namespace Classroom
             });
 
         }
+        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 }

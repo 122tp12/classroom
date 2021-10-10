@@ -38,7 +38,7 @@ namespace Classroom.Classes
 
             var users = new User[]
             {
-                new User { Id = 1, Name = "asdas", Email = "adsa", ImgPath = "adss", Description = "asdsa" }
+                new User { Id = 1, Name = "asdas", Email = "adsa", ImgPath = "adss", Description = "asdsa", Password="asasdas" }
             };
         }
     }
