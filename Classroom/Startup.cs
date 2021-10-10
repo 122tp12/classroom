@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
@@ -22,6 +23,7 @@ namespace Classroom
 
             services.AddDistributedMemoryCache();
 
+            services.AddDbContext<classroomContext>(option => option.UseSqlServer("Server=DESKTOP-QGEEUPD;Database=classroom;Trusted_Connection=True;"));
             services.AddSession(options =>
             {
                 options.IdleTimeout = TimeSpan.FromDays(1);

@@ -9,14 +9,14 @@ namespace Classroom.Models.Index
     public class GroupModel: PageModel
     {
         public List<Classroom.Task> listTasks;
-        public GroupModel()
+        classroomContext context;
+        public GroupModel(classroomContext _context)
         {
-         
+            context = _context;
         }
         public void getTasks(int _idGroup, int _idUser)
         {
-            using (classroomContext context = new classroomContext())
-            {
+            
                 try
                 {
                     Group group=new Group();
@@ -31,7 +31,7 @@ namespace Classroom.Models.Index
                 {
                     
                 }
-            }
+            
             
         }
     }

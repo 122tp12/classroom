@@ -14,16 +14,17 @@ namespace Classroom.Controllers
     public class IndexController : Controller
     {
         public IHttpContextAccessor accessor;
+        public classroomContext context;
         //Just taking accessor for session
-        public IndexController(IHttpContextAccessor _accessor)
+        public IndexController(IHttpContextAccessor _accessor, classroomContext _context)
         {
+            context = _context;
             accessor = _accessor;
-
         }
         //сторінка з насками
         public IActionResult Index()
         {
-            IndexModel model=new IndexModel(accessor);
+            IndexModel model=new IndexModel(accessor, context);
             try
             {
                 model.getTasks(accessor.HttpContext.Session.GetInt32("user").Value);//тут має бути id user, яка буде братись з сесії
@@ -41,7 +42,7 @@ namespace Classroom.Controllers
         
         public IActionResult TasksInGroup(int id)
         {
-            GroupModel model = new GroupModel();
+            GroupModel model = new GroupModel(context);
             try
             {
                 model.getTasks(id, accessor.HttpContext.Session.GetInt32("user").Value);//тут має бути id групи, яка буде братись get запроса
@@ -58,7 +59,7 @@ namespace Classroom.Controllers
         [HttpGet]
         public IActionResult Task(int id)
         {
-            TaskModel model = new TaskModel();
+            TaskModel model = new TaskModel(context);
             model.getTask(id);//тут має бути id таска, яка буде братись get запроса
             return View(model);
         }

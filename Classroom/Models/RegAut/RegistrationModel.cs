@@ -8,17 +8,15 @@ namespace Classroom.Models.RegAut
 {
     public class RegistrationModel : PageModel
     {
-        public RegistrationModel()
+        classroomContext context;
+        public RegistrationModel(classroomContext _context)
         {
-            
+            context = _context;
         }
         public void saveUser(User user)
         {
-            using (classroomContext context = new classroomContext())
-            {
-                context.Users.Add(user);
-                context.SaveChanges();
-            }
+            context.Users.Add(user);
+            context.SaveChanges();
         }
     }
 }

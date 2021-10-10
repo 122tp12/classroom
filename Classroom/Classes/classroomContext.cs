@@ -17,6 +17,8 @@ namespace Classroom
         {
         }
 
+       
+
         public virtual DbSet<Group> Groups { get; set; }
         public virtual DbSet<GroupUser> GroupUsers { get; set; }
         public virtual DbSet<Reaply> Reaplies { get; set; }

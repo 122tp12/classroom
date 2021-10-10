@@ -9,17 +9,16 @@ namespace Classroom.Models.Index
     public class TaskModel : PageModel
     {
         public Classroom.Task task;
-        
-        public TaskModel()
+        classroomContext context;
+        public TaskModel(classroomContext _context)
         {
-            
+            context = _context;
         }
         public void getTask(int _idTask)
         {
-            using (classroomContext context = new classroomContext())
-            {
-                task = context.Tasks.Where(n => n.Id == _idTask).First();
-            }
+            
+            task = context.Tasks.Where(n => n.Id == _idTask).First();
+            
         }
     }
 }

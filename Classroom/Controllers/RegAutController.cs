@@ -12,8 +12,10 @@ namespace Classroom.Controllers
     public class RegAutController : Controller
     {
         IHttpContextAccessor accessor;
-        public RegAutController(IHttpContextAccessor _accessor)
+        classroomContext context;
+        public RegAutController(IHttpContextAccessor _accessor, classroomContext _context)
         {
+            context = _context;
             accessor = _accessor;
         }
 
@@ -25,7 +27,7 @@ namespace Classroom.Controllers
         public IActionResult RegistrationSave(String name, String password, String email, String img, String description)
         {
             User u = new User() { Name=name, Password=password, Email=email, ImgPath=img, Description=description};
-            RegistrationModel model = new RegistrationModel();
+            RegistrationModel model = new RegistrationModel(context);
             model.saveUser(u);
             return Redirect("~/RegAut/Autoresation");
         }
@@ -37,7 +39,7 @@ namespace Classroom.Controllers
         [HttpPost]
         public IActionResult AutoresationSave(String Username, String Password)
         {
-            AutoresationModel model=new AutoresationModel();
+            AutoresationModel model=new AutoresationModel(context);
             try
             {
                 model.getUser(Username, Password);
