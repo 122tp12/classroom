@@ -30,7 +30,7 @@ namespace Classroom.Controllers
             }
             catch (Exception ex)
             {
-                model.getTasks(1);//тимчасово, доки не ма перевірки на те чи залогінений юзер
+                return Redirect("~/RegAut/Autoresation");//model.getTasks(1);//тимчасово, доки не ма перевірки на те чи залогінений юзер
             }
             return View(model);
         }
@@ -42,7 +42,15 @@ namespace Classroom.Controllers
         public IActionResult TasksInGroup(int id)
         {
             GroupModel model = new GroupModel();
-            model.getTasks(id);//тут має бути id групи, яка буде братись get запроса
+            try
+            {
+                model.getTasks(id, accessor.HttpContext.Session.GetInt32("user").Value);//тут має бути id групи, яка буде братись get запроса
+            }
+            catch (Exception ex)
+            {
+                return Redirect("~/RegAut/Autoresation");//model.getTasks(1);//тимчасово, доки не ма перевірки на те чи залогінений юзер
+            }
+            
             return View(model);
         }
 
