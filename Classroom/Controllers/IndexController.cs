@@ -48,10 +48,10 @@ namespace Classroom.Controllers
 
         //окремий таск
         [HttpGet]
-        public IActionResult Task(int _idTask)
+        public IActionResult Task(int id)
         {
             TaskModel model = new TaskModel();
-            model.getTask(1);//тут має бути id таска, яка буде братись get запроса
+            model.getTask(id);//тут має бути id таска, яка буде братись get запроса
             return View(model);
         }
     }
