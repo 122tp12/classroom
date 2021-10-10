@@ -66,6 +66,14 @@ namespace Classroom
                        pattern: "{controller=Index}/{action=Index}"
                 );
                 endpoints.MapControllerRoute(
+                       name: "Index",
+                       pattern: "{controller=Index}/{action=TasksInGroup}/{id}"
+                );
+                endpoints.MapControllerRoute(
+                       name: "Index",
+                       pattern: "{controller=Index}/{action=Task}/{id}"
+                );
+                endpoints.MapControllerRoute(
                        name: "IndexU",
                        pattern: "{controller=User}/{action=Index}"
                 );

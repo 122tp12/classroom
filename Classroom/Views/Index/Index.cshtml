@@ -1,7 +1,7 @@
 ﻿@model Classroom.Models.Index.IndexModel;
-@*@{
+@{
     Layout = "_Layout";
-}*@
+}
 <div class="flex menuBlock">
     <div class="leftMenuBlock">
         <ul class="menuUlStyle">
@@ -16,8 +16,10 @@
 </div>
 <div class="anderMenuLine"></div>
 
-@for(int i=0;i< Model.listGroups.Count;i++ )
-{
-<h1>@Model.listGroups[i].Name</h1>
-}
+<table>
+    @for (int i = 0; i < Model.listGroups.Count; i++)
+    {
+        <tr><td>@Model.listGroups[i].Id</td><td>@Model.listGroups[i].Name</td><td><a href="~/Index/TasksInGroup/@Model.listGroups[i].Id">link</a></td></tr>
+    }
+</table>
 <h1>index</h1>

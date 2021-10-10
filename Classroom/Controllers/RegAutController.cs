@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Classroom.Models.RegAut;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -22,16 +23,41 @@ namespace Classroom.Controllers
         {
             return View();
         }
-        
+        [HttpPost]
+        public IActionResult RegistrationSave(String name, String password, String email, String img, String description)
+        {
+            User u = new User() { Name=name, Password=password, Email=email, ImgPath=img, Description=description};
+            RegistrationModel model = new RegistrationModel();
+            model.saveUser(u);
+            return Redirect("~/RegAut/Autoresation");
+        }
+
         public IActionResult Autoresation()
         {
             return View();
         }
         [HttpPost]
-        public IActionResult AutoresationSave(int? id)
+        public IActionResult AutoresationSave(String Username, String Password)
         {
-            accessor.HttpContext.Session.SetInt32("user", id.Value);
-            return Redirect("~/");
+            AutoresationModel model=new AutoresationModel();
+            try
+            {
+                model.getUser(Username, Password);
+            }
+            catch (Exception ex)
+            {
+                return Redirect("~/RegAut/Autoresation");
+            }
+            if (model.user==null)
+            {
+                return Redirect("~/RegAut/Autoresation");
+            }
+            else
+            {
+                accessor.HttpContext.Session.SetInt32("user", model.user.Id);
+                return Redirect("~/");
+            }
+            
         }
         
 

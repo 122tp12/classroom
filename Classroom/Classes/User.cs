@@ -18,6 +18,7 @@ namespace Classroom
         public string Email { get; set; }
         public string ImgPath { get; set; }
         public string Description { get; set; }
+        public string Password { get; set; }
 
         public virtual ICollection<GroupUser> GroupUsers { get; set; }
         public virtual ICollection<Group> Groups { get; set; }
