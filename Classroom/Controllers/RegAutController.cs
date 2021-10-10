@@ -22,9 +22,12 @@ namespace Classroom.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult RegistrationSave()
+        public IActionResult RegistrationSave(String name, String password, String email, String img, String description)
         {
-            return Redirect("~/Autoresation");
+            User u = new User() { Name=name, Password=password, Email=email, ImgPath=img, Description=description};
+            RegistrationModel model = new RegistrationModel();
+            model.saveUser(u);
+            return Redirect("~/RegAut/Autoresation");
         }
 
         public IActionResult Autoresation()
