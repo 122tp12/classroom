@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,17 +10,17 @@ namespace Classroom.Models.Index
     public class TaskModel : PageModel
     {
         public Classroom.Task task;
-        
-        public TaskModel()
+        private IHttpContextAccessor accessor;
+        private readonly classroomContext _context;
+
+        public TaskModel(IHttpContextAccessor _accessor, classroomContext context)
         {
-            
+            accessor = _accessor;
+            _context = context;
         }
         public void getTask(int _idTask)
         {
-            using (classroomContext context = new classroomContext())
-            {
-                task = context.Tasks.Where(n => n.Id == _idTask).First();
-            }
+                task = _context.Tasks.Where(n => n.Id == _idTask).First();
         }
     }
 }

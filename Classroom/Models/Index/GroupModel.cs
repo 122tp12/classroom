@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,16 +10,16 @@ namespace Classroom.Models.Index
     public class GroupModel: PageModel
     {
         public List<Classroom.Task> listTasks;
-        public GroupModel()
+        private IHttpContextAccessor accessor;
+        private readonly classroomContext _context;
+        public GroupModel(IHttpContextAccessor _accessor,classroomContext context)
         {
-         
+            accessor = _accessor;
+            _context = context;
         }
         public void getTasks(int _idGroup)
         {
-            using (classroomContext context = new classroomContext())
-            {
-                listTasks = context.Tasks.Where(n => n.IdGroup == _idGroup).OrderBy(n => n.DatePublished).ToList();
-            }
+                listTasks = _context.Tasks.Where(n => n.IdGroup == _idGroup).OrderBy(n => n.DatePublished).ToList();
         }
     }
 }

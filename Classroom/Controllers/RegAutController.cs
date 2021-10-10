@@ -11,8 +11,10 @@ namespace Classroom.Controllers
     public class RegAutController : Controller
     {
         IHttpContextAccessor accessor;
-        public RegAutController(IHttpContextAccessor _accessor)
+        private readonly classroomContext _context;
+        public RegAutController(IHttpContextAccessor _accessor, classroomContext context)
         {
+            _context = context;
             accessor = _accessor;
         }
 
