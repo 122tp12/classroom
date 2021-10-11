@@ -17,11 +17,17 @@ namespace Classroom.Controllers
         {
             context = _context;
             accessor = _accessor;
+            
         }
 
         public IActionResult Registration()
         {
             return View();
+        }
+        public IActionResult Exit()
+        {
+            accessor.HttpContext.Session.Remove("user");
+            return Redirect("~/");
         }
         [HttpPost]
         public IActionResult RegistrationSave(String name, String password, String email, String img, String description)

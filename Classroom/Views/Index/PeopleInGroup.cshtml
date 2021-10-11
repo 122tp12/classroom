@@ -1,0 +1,16 @@
+﻿@model Classroom.Models.Index.GroupModel;
+
+@{
+    Layout = "_Layout";
+}
+
+<h4><a href="~/Index/TasksInGroup/@ViewData["currentId"]">Tasks</a></h4>
+<h4>Owner: @Model.owner.Name</h4>
+<ul>
+    @for (int i = 0; i < Model.members.Count; i++)
+    {
+    <li>
+        @Model.members[i].Name
+    </li>
+   }
+</ul>

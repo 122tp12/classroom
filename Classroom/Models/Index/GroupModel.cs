@@ -9,6 +9,8 @@ namespace Classroom.Models.Index
     public class GroupModel: PageModel
     {
         public List<Classroom.Task> listTasks;
+        public List<User> members;
+        public User owner;
         classroomContext context;
         public GroupModel(classroomContext _context)
         {
@@ -33,6 +35,24 @@ namespace Classroom.Models.Index
                 }
             
             
+        }
+        public void getPeoples(int _idGroup)
+        {
+            try
+            {
+                List<User> users=new List<User>();
+                List<GroupUser> l=context.GroupUsers.Where(n => n.IdGroup == _idGroup).ToList();
+                for(int i=0;i<l.Count ;i++ )
+                {
+                    users.Add(context.Users.Where(n=>n.Id== l[i].IdUser).FirstOrDefault());
+                }
+                members = users;
+                owner = context.Users.Where(n=>n.Id==(context.Groups.Where(n=>n.Id==_idGroup).FirstOrDefault().IdOwner)).FirstOrDefault();
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
     }
 }
