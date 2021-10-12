@@ -1,0 +1,17 @@
+﻿@{
+    Layout = "_Layout";
+}
+
+@if ((bool)ViewData["joined"] != false)
+{
+<form action="~/GroupC/CreateConfirm" method="post">
+    <span>Name:</span><input type="text" name="name" /><br />
+    <span>Description:</span><input type="text" name="description" /><br />
+    <span>Password:</span><input type="password" name="password" /><br />
+    <input type="submit" />
+</form>
+}
+else
+{
+    <p>Must Join <a href="~/RegAut/Autoresation">link</a></p>
+}

@@ -8,7 +8,7 @@ namespace Classroom.Models.Index
 {
     public class GroupModel: PageModel
     {
-        public List<Classroom.Task> listTasks;
+        public List<Task> listTasks;
         public List<User> members;
         public User owner;
         classroomContext context;

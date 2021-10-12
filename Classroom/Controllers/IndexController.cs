@@ -35,7 +35,7 @@ namespace Classroom.Controllers
             }
         }
 
-        //сторінка з насками
+        //сторінка з тасками
         public IActionResult Index()
         {
             startUp();

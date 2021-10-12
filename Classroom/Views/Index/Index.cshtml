@@ -24,16 +24,34 @@
 </div>
 <div class="anderMenuLine"></div>
 
-@if ((bool)ViewData["joined"] == true)
+@if ((bool)ViewData["joined"] != false)
 {
-<table>
-    @for (int i = 0; i < Model.listGroups.Count; i++)
-    {
-        <tr><td>@Model.listGroups[i].Id</td><td>@Model.listGroups[i].Name</td><td><a href="~/Index/TasksInGroup/@Model.listGroups[i].Id">link</a></td></tr>
-    }
-</table>
+    <h3>My Groups</h3>
+    <table>
+        @foreach (Classroom.Group item in Model.listMyGroups)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+                <td><a href="~/Index/TasksInGroup/@item.Id">link</a></td>
+            </tr>
+        }
+    </table>
+    <hr />
+    <h3>Groups where i member</h3>
+    <table>
+        @for (int i = 0; i < Model.listGroups.Count; i++)
+        {
+            <tr><td>@Model.listGroups[i].Id</td><td>@Model.listGroups[i].Name</td><td><a href="~/Index/TasksInGroup/@Model.listGroups[i].Id">link</a></td></tr>
+        }
+    </table>
+    <br />
+    <br />
+    <a href="~/GroupC/Join">Join</a>
+    <a href="~/GroupC/Create">Create group</a>
 }
 else
 {
     <p>Must Join <a href="~/RegAut/Autoresation">link</a></p>
 }
+

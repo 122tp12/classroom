@@ -4,7 +4,8 @@
     Layout = "_Layout";
 }
 
-
+@if ((bool)ViewData["joined"] != false)
+{
 <form action="~/Index/ReaplySave" method="post">
     <input type="hidden" name="id" value="@Model.currentId" />
     <input type="hidden" name="userId" value="@Model.userId" />
@@ -12,3 +13,10 @@
     @*add sending file*@
     <input type="submit" value="submith" />
 </form>
+}
+else
+{
+    <p>Must Join <a href="~/RegAut/Autoresation">link</a></p>
+}
+
+

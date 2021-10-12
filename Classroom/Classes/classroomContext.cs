@@ -53,6 +53,11 @@ namespace Classroom
                     .HasColumnName("name")
                     .IsFixedLength(true);
 
+                entity.Property(e => e.Password)
+                    .HasMaxLength(20)
+                    .HasColumnName("password")
+                    .IsFixedLength(true);
+
                 entity.HasOne(d => d.IdOwnerNavigation)
                     .WithMany(p => p.Groups)
                     .HasForeignKey(d => d.IdOwner)
