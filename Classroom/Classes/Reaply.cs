@@ -10,6 +10,7 @@ namespace Classroom
         public int Id { get; set; }
         public string ReaplyPath { get; set; }
         public int? IdTask { get; set; }
+        public string description { get; set; }
 
         public virtual Task IdTaskNavigation { get; set; }
     }

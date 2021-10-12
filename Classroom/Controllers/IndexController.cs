@@ -89,14 +89,7 @@ namespace Classroom.Controllers
 
             return View(model);
         }
-        public IActionResult Reaply(int id)
-        {
-            startUp();
-            
-            GroupModel model = new GroupModel(context);
-            
-            return View(model);
-        }
+        
 
         //окремий таск
         [HttpGet]
@@ -106,6 +99,26 @@ namespace Classroom.Controllers
             TaskModel model = new TaskModel(context);
             model.getTask(id);//тут має бути id таска, яка буде братись get запроса
             return View(model);
+        }
+
+        public IActionResult Reaply(int id)
+        {
+            startUp();
+
+            ReaplyModel model = new ReaplyModel(context);
+            model.currentId = id;
+
+            return View(model);
+        }
+        [HttpPost]
+        public IActionResult ReaplySave(int id, string description)
+        {
+            startUp();
+
+            ReaplyModel model = new ReaplyModel(context);
+            model.saveReaply(new Reaply() { description = description, IdTask = id });
+
+            return Redirect("~/Index/Task/" + id);
         }
     }
 }

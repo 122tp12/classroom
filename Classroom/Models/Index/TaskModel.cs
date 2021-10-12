@@ -9,6 +9,7 @@ namespace Classroom.Models.Index
     public class TaskModel : PageModel
     {
         public Classroom.Task task;
+        public List<Reaply> reaplies;
         classroomContext context;
         public TaskModel(classroomContext _context)
         {
@@ -19,6 +20,10 @@ namespace Classroom.Models.Index
             
             task = context.Tasks.Where(n => n.Id == _idTask).First();
             
+        }
+        public void getMyReaplyes(int _idTask, int _idUser)
+        {
+            //context.Reaplies.Where(n => n);
         }
     }
 }
