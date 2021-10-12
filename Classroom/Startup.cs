@@ -73,6 +73,10 @@ namespace Classroom
                        pattern: "{controller=Index}/{action=Reaply}/{id}"
                 );
                 endpoints.MapControllerRoute(
+                       name: "ReaplyDelete",
+                       pattern: "{controller=Index}/{action=ReaplyDelete}/{id}"
+                );
+                endpoints.MapControllerRoute(
                        name: "User",
                        pattern: "{controller=User}/{action=Index}"
                 );

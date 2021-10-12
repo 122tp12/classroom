@@ -19,3 +19,11 @@
 </p>
 
 <a href="~/Index/Reaply/@Model.task.Id">Write reaplyes</a>
+
+<h4>My reaplyes</h4>
+<ul>
+    @foreach (Classroom.Reaply r in Model.reaplies)
+    {
+        <li>@r.Id: @r.Description <a href="~/Index/ReaplyDelete/@r.Id">(delete)</a></li>
+    }
+</ul>

@@ -98,6 +98,14 @@ namespace Classroom.Controllers
             startUp();
             TaskModel model = new TaskModel(context);
             model.getTask(id);//тут має бути id таска, яка буде братись get запроса
+            try
+            {
+                model.getMyReaplyes(id, accessor.HttpContext.Session.GetInt32("user").Value);
+            }
+            catch(Exception ex)
+            {
+                return Content(ex.Message);
+            }
             return View(model);
         }
 
@@ -107,18 +115,33 @@ namespace Classroom.Controllers
 
             ReaplyModel model = new ReaplyModel(context);
             model.currentId = id;
-
+            try
+            {
+                model.userId= accessor.HttpContext.Session.GetInt32("user").Value;
+            }
+            catch (Exception ex)
+            {
+                return Content(ex.Message);
+            }
             return View(model);
         }
         [HttpPost]
-        public IActionResult ReaplySave(int id, string description)
+        public IActionResult ReaplySave(int id, string description, int userId)
         {
             startUp();
 
             ReaplyModel model = new ReaplyModel(context);
-            model.saveReaply(new Reaply() { description = description, IdTask = id });
+            model.saveReaply(new Reaply() { Description = description, IdTask = id, IdUser=userId });
 
             return Redirect("~/Index/Task/" + id);
+        }
+        public IActionResult ReaplyDelete(int id)
+        {
+            ReaplyModel model = new ReaplyModel(context);
+
+            int idTask = model.deleteReaply(id);
+
+            return Redirect("~/Index/Task/"+idTask);
         }
     }
 }

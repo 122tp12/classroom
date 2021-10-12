@@ -7,7 +7,8 @@
 
 <form action="~/Index/ReaplySave" method="post">
     <input type="hidden" name="id" value="@Model.currentId" />
+    <input type="hidden" name="userId" value="@Model.userId" />
     <textarea name="description"></textarea>
     @*add sending file*@
-    <input type="submit" value="submith"/>
+    <input type="submit" value="submith" />
 </form>

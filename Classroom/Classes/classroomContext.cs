@@ -17,8 +17,6 @@ namespace Classroom
         {
         }
 
-       
-
         public virtual DbSet<Group> Groups { get; set; }
         public virtual DbSet<GroupUser> GroupUsers { get; set; }
         public virtual DbSet<Reaply> Reaplies { get; set; }
@@ -88,7 +86,13 @@ namespace Classroom
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
+                entity.Property(e => e.Description)
+                    .HasColumnType("text")
+                    .HasColumnName("description");
+
                 entity.Property(e => e.IdTask).HasColumnName("id_task");
+
+                entity.Property(e => e.IdUser).HasColumnName("id_user");
 
                 entity.Property(e => e.ReaplyPath)
                     .HasMaxLength(50)
@@ -99,6 +103,11 @@ namespace Classroom
                     .WithMany(p => p.Reaplies)
                     .HasForeignKey(d => d.IdTask)
                     .HasConstraintName("FK_reaply_task");
+
+                entity.HasOne(d => d.IdUserNavigation)
+                    .WithMany(p => p.Reaplies)
+                    .HasForeignKey(d => d.IdUser)
+                    .HasConstraintName("FK_reaply_users");
             });
 
             modelBuilder.Entity<Task>(entity =>
@@ -107,9 +116,17 @@ namespace Classroom
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
+                entity.Property(e => e.DatePublished)
+                    .HasColumnType("date")
+                    .HasColumnName("datePublished");
+
                 entity.Property(e => e.Description)
                     .HasColumnType("text")
                     .HasColumnName("description");
+
+                entity.Property(e => e.FilePaths)
+                    .HasColumnType("text")
+                    .HasColumnName("filePaths");
 
                 entity.Property(e => e.IdGroup).HasColumnName("id_group");
 
@@ -152,6 +169,11 @@ namespace Classroom
                 entity.Property(e => e.Name)
                     .HasMaxLength(30)
                     .HasColumnName("name")
+                    .IsFixedLength(true);
+
+                entity.Property(e => e.Password)
+                    .HasMaxLength(25)
+                    .HasColumnName("password")
                     .IsFixedLength(true);
             });
 

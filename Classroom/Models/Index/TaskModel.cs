@@ -23,7 +23,7 @@ namespace Classroom.Models.Index
         }
         public void getMyReaplyes(int _idTask, int _idUser)
         {
-            //context.Reaplies.Where(n => n);
+            reaplies=context.Reaplies.Where(n => n.IdTask == _idTask && n.IdUser == _idUser).ToList() ;
         }
     }
 }
