@@ -99,9 +99,9 @@ namespace Classroom
 
                 entity.Property(e => e.IdUser).HasColumnName("id_user");
 
-                entity.Property(e => e.ReaplyPath)
+                entity.Property(e => e.FileName)
                     .HasMaxLength(50)
-                    .HasColumnName("reaply_path")
+                    .HasColumnName("file_name")
                     .IsFixedLength(true);
 
                 entity.HasOne(d => d.IdTaskNavigation)
@@ -129,9 +129,9 @@ namespace Classroom
                     .HasColumnType("text")
                     .HasColumnName("description");
 
-                entity.Property(e => e.FilePaths)
+                entity.Property(e => e.FileName)
                     .HasColumnType("text")
-                    .HasColumnName("filePaths");
+                    .HasColumnName("fileName");
 
                 entity.Property(e => e.IdGroup).HasColumnName("id_group");
 

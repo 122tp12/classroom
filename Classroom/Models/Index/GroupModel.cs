@@ -16,24 +16,31 @@ namespace Classroom.Models.Index
         {
             context = _context;
         }
-        public void getTasks(int _idGroup, int _idUser)
+        public bool getTasks(int _idGroup, int _idUser)
         {
             
                 try
                 {
-                    Group group=new Group();
+                    /*Group group=new Group();
                     List<GroupUser> tmpList = context.GroupUsers.Where(n => n.IdGroup == _idGroup && n.IdUser == _idUser).ToList();
                     for (int i = 0; i < tmpList.Count; i++)
                     {
                         group = (context.Groups.Where(n => n.Id == tmpList[i].IdUser).First());
-                    }
-                    listTasks = context.Tasks.Where(n => n.IdGroup == group.Id).OrderBy(n => n.DatePublished).ToList();
+                    }*/
+                    listTasks = context.Tasks.Where(n => n.IdGroup == _idGroup/*group.Id*/).OrderBy(n => n.DatePublished).ToList();
                 }
                 catch (Exception ex)
                 {
                     
                 }
-            
+            if (context.Groups.Where(n => n.Id == _idGroup).First().IdOwner == _idUser)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
             
         }
         public void getPeoples(int _idGroup)

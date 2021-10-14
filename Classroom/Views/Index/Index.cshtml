@@ -34,9 +34,13 @@
                 <td>@item.Id</td>
                 <td>@item.Name</td>
                 <td><a href="~/Index/TasksInGroup/@item.Id">link</a></td>
+                <td><a href="~/Index/DeleteGroup/@item.Id">delete</a></td>
+
             </tr>
         }
     </table>
+
+    <a href="~/GroupC/Create">Create group</a>
     <hr />
     <h3>Groups where i member</h3>
     <table>
@@ -48,7 +52,6 @@
     <br />
     <br />
     <a href="~/GroupC/Join">Join</a>
-    <a href="~/GroupC/Create">Create group</a>
 }
 else
 {

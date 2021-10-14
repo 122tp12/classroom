@@ -21,6 +21,7 @@
         Description:
         @Model.task.Description
     </p>
+    <a href="~/Index/DownloadTaskFile/@Model.task.Id">@Model.task.FileName</a>
 
     <a href="~/Index/Reaply/@Model.task.Id">Write reaplyes</a>
 
@@ -28,7 +29,7 @@
     <ul>
         @foreach (Classroom.Reaply r in Model.reaplies)
         {
-            <li>@r.Id: @r.Description <a href="~/Index/ReaplyDelete/@r.Id">(delete)</a></li>
+            <li>@r.Id: @r.Description <a href="~/Index/DownloadFile/@r.Id">@r.FileName</a> <a href="~/Index/ReaplyDelete/@r.Id">(delete)</a></li>
         }
     </ul>
 }

@@ -8,7 +8,7 @@ namespace Classroom
     public partial class Reaply
     {
         public int Id { get; set; }
-        public string ReaplyPath { get; set; }
+        public string FileName { get; set; }
         public int? IdTask { get; set; }
         public int? IdUser { get; set; }
         public string Description { get; set; }

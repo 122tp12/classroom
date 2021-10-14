@@ -25,4 +25,9 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\usersFiles\" />
+    <Folder Include="wwwroot\tasksFiles\" />
+  </ItemGroup>
+
 </Project>

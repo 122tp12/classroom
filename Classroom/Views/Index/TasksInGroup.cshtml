@@ -3,21 +3,40 @@
 @{
     Layout = "_Layout";
 }
-
 @if ((bool)ViewData["joined"] != false)
 {
-    <h4><a href="~/Index/PeopleInGroup/@ViewData["currentId"]">Peoples</a></h4>
-    <table>
-        @for (int i = 0; i < Model.listTasks.Count; i++)
-        {
+    @if (!(bool)ViewData["owned"])
+    {
+        <h4><a href="~/Index/PeopleInGroup/@ViewData["currentId"]">Peoples</a></h4>
+        <table>
+            @for (int i = 0; i < Model.listTasks.Count; i++)
+            {
+                <tr>
+                    <td>@Model.listTasks[i].Id</td>
+                    <td>@Model.listTasks[i].Name</td>
+                    <td>@Model.listTasks[i].Description</td>
+                    <td><a href="~/Index/Task/@Model.listTasks[i].Id">link</a></td>
+                </tr>
+            }
+        </table>
+    }
+    else
+    {
+        <h4><a href="~/Index/PeopleInGroup/@ViewData["currentId"]">Peoples</a></h4>
+        <table>
+            @for (int i = 0; i < Model.listTasks.Count; i++)
+            {
             <tr>
                 <td>@Model.listTasks[i].Id</td>
                 <td>@Model.listTasks[i].Name</td>
                 <td>@Model.listTasks[i].Description</td>
                 <td><a href="~/Index/Task/@Model.listTasks[i].Id">link</a></td>
+                <td><a href="~/Index/DeleteTask/@Model.listTasks[i].Id">delete</a></td>
             </tr>
-        }
-    </table>
+            }
+        </table>
+        <a href="~/Index/CreateTask/@ViewData["currentId"]">Create new</a>
+    }
 }
 else
 {

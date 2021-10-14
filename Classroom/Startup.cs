@@ -81,9 +81,30 @@ namespace Classroom
                        pattern: "{controller=User}/{action=Index}"
                 );
                 endpoints.MapControllerRoute(
+                       name: "file",
+                       pattern: "{controller=Index}/{action=DownloadFile}/{id}"
+                );
+                endpoints.MapControllerRoute(
+                       name: "file",
+                       pattern: "{controller=Index}/{action=DownloadTaskFile}/{id}"
+                );
+                
+                endpoints.MapControllerRoute(
+                    name:"Delete task", 
+                    pattern: "{controller=Index}/{action=DeleteTask}/{id}"
+                    );
+                endpoints.MapControllerRoute(
+                    name: "Delete Group",
+                    pattern: "{controller=Index}/{action=DeleteGroup}/{id}"
+                    );
+                endpoints.MapControllerRoute(
                        name: "IndexRL",
                        pattern: "{controller=RegAut}/{action=Index}"
                 );
+                endpoints.MapControllerRoute(
+                    name: "Create task",
+                    pattern: "{controller=Index}/{action=CreateTask}/{id}"
+                    ); 
 
             });
         }

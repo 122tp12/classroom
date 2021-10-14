@@ -6,10 +6,12 @@
 
 @if ((bool)ViewData["joined"] != false)
 {
-<form action="~/Index/ReaplySave" method="post">
+<form action="~/Index/ReaplySave" method="post" enctype="multipart/form-data">
     <input type="hidden" name="id" value="@Model.currentId" />
     <input type="hidden" name="userId" value="@Model.userId" />
+
     <textarea name="description"></textarea>
+    <input type="file" name="uploadedFile" />
     @*add sending file*@
     <input type="submit" value="submith" />
 </form>

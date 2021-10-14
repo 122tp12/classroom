@@ -16,7 +16,7 @@ namespace Classroom.Models.GroupC
         public bool saveGroupUserRelationship(int _userId, int _groupId, string _password)
         {
             Group g=context.Groups.Where(n => n.Id == _groupId).FirstOrDefault();
-            if (g.Password.Trim() == _password)
+            if (g.Password == null||g.Password.Trim() == _password)
             {
                 context.GroupUsers.Add(new GroupUser() {IdGroup=_groupId, IdUser=_userId });
                 context.SaveChanges();

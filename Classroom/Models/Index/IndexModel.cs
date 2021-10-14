@@ -9,7 +9,7 @@ namespace Classroom.Models.Index
 {
     public class IndexModel : PageModel
     {
-        public List<Classroom.Group> listGroups;
+        public List<Group> listGroups;
         public List<Group> listMyGroups;
         IHttpContextAccessor accessor;
         classroomContext context;
