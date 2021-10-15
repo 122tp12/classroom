@@ -54,6 +54,7 @@ namespace Classroom.Controllers
 
         public IActionResult DeleteTask(int id)
         {
+            System.IO.File.Delete("wwwroot\\tasksFiles\\"+id);
             context.Tasks.Remove(context.Tasks.Where(n=>n.Id==id).FirstOrDefault());
             context.SaveChanges();
             return Redirect("~/");
@@ -85,6 +86,7 @@ namespace Classroom.Controllers
             task.Name = title;
             task.IdGroup = id;
             task.Type =type;
+            task.FileName = uploadedFile.FileName;
 
             int idFile=model.saveTask(task);
             model.SaveFile(uploadedFile, idFile);

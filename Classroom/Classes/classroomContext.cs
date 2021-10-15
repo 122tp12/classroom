@@ -77,6 +77,7 @@ namespace Classroom
                 entity.HasOne(d => d.IdGroupNavigation)
                     .WithMany(p => p.GroupUsers)
                     .HasForeignKey(d => d.IdGroup)
+                    .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK_group_user_group");
 
                 entity.HasOne(d => d.IdUserNavigation)
@@ -95,18 +96,19 @@ namespace Classroom
                     .HasColumnType("text")
                     .HasColumnName("description");
 
-                entity.Property(e => e.IdTask).HasColumnName("id_task");
-
-                entity.Property(e => e.IdUser).HasColumnName("id_user");
-
                 entity.Property(e => e.FileName)
                     .HasMaxLength(50)
                     .HasColumnName("file_name")
                     .IsFixedLength(true);
 
+                entity.Property(e => e.IdTask).HasColumnName("id_task");
+
+                entity.Property(e => e.IdUser).HasColumnName("id_user");
+
                 entity.HasOne(d => d.IdTaskNavigation)
                     .WithMany(p => p.Reaplies)
                     .HasForeignKey(d => d.IdTask)
+                    .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK_reaply_task");
 
                 entity.HasOne(d => d.IdUserNavigation)
