@@ -8,6 +8,10 @@ namespace Classroom
 {
     public partial class classroomContext : DbContext
     {
+        public classroomContext()
+        {
+        }
+
         public classroomContext(DbContextOptions<classroomContext> options)
             : base(options)
         {
@@ -18,6 +22,15 @@ namespace Classroom
         public virtual DbSet<Reaply> Reaplies { get; set; }
         public virtual DbSet<Task> Tasks { get; set; }
         public virtual DbSet<User> Users { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+                optionsBuilder.UseSqlServer("Server=DESKTOP-QGEEUPD;Database=classroom;Trusted_Connection=True;");
+            }
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -173,7 +186,9 @@ namespace Classroom
                     .IsFixedLength(true);
             });
 
+            OnModelCreatingPartial(modelBuilder);
         }
+
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 }
