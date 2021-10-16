@@ -1,0 +1,41 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>View</title>
+    <link rel="stylesheet" href="/css/StyleSheet.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@300&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="centerText logoText logoBackground logoBlock">
+                <div class="logoTextBlock">
+                    <span class="blueText">Cla</span><span class="yellowText">ssr</span><span class="orangeText">oom</span>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="anderMenuLine"></div>
+    <div class="MenuContent" style="min-height: 650px">
+        <main role="main" class="">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="">
+        <div class="" style="width:100%; height:100px;">
+            <h4 style="text-align: center; padding-top: 50px; color: #fac564;">Copyright ©2021 All rights reserved | This template is made with  by MyTeam</h4>
+        </div>
+    </footer>
+</body>
+</html>

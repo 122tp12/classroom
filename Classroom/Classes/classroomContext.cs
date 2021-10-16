@@ -53,6 +53,11 @@ namespace Classroom
                     .HasColumnName("name")
                     .IsFixedLength(true);
 
+                entity.Property(e => e.Password)
+                    .HasMaxLength(20)
+                    .HasColumnName("password")
+                    .IsFixedLength(true);
+
                 entity.HasOne(d => d.IdOwnerNavigation)
                     .WithMany(p => p.Groups)
                     .HasForeignKey(d => d.IdOwner)
@@ -72,6 +77,7 @@ namespace Classroom
                 entity.HasOne(d => d.IdGroupNavigation)
                     .WithMany(p => p.GroupUsers)
                     .HasForeignKey(d => d.IdGroup)
+                    .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK_group_user_group");
 
                 entity.HasOne(d => d.IdUserNavigation)
@@ -86,17 +92,31 @@ namespace Classroom
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
+                entity.Property(e => e.Description)
+                    .HasColumnType("text")
+                    .HasColumnName("description");
+
+                entity.Property(e => e.FileName)
+                    .HasMaxLength(50)
+                    .HasColumnName("file_name")
+                    .IsFixedLength(true);
+
                 entity.Property(e => e.IdTask).HasColumnName("id_task");
 
-                entity.Property(e => e.ReaplyPath)
-                    .HasMaxLength(50)
-                    .HasColumnName("reaply_path")
-                    .IsFixedLength(true);
+                entity.Property(e => e.IdUser).HasColumnName("id_user");
+
+                entity.Property(e => e.Mark).HasColumnName("mark");
 
                 entity.HasOne(d => d.IdTaskNavigation)
                     .WithMany(p => p.Reaplies)
                     .HasForeignKey(d => d.IdTask)
+                    .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK_reaply_task");
+
+                entity.HasOne(d => d.IdUserNavigation)
+                    .WithMany(p => p.Reaplies)
+                    .HasForeignKey(d => d.IdUser)
+                    .HasConstraintName("FK_reaply_users");
             });
 
             modelBuilder.Entity<Task>(entity =>
@@ -105,9 +125,17 @@ namespace Classroom
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
+                entity.Property(e => e.DatePublished)
+                    .HasColumnType("date")
+                    .HasColumnName("datePublished");
+
                 entity.Property(e => e.Description)
                     .HasColumnType("text")
                     .HasColumnName("description");
+
+                entity.Property(e => e.FileName)
+                    .HasColumnType("text")
+                    .HasColumnName("fileName");
 
                 entity.Property(e => e.IdGroup).HasColumnName("id_group");
 
@@ -150,6 +178,11 @@ namespace Classroom
                 entity.Property(e => e.Name)
                     .HasMaxLength(30)
                     .HasColumnName("name")
+                    .IsFixedLength(true);
+
+                entity.Property(e => e.Password)
+                    .HasMaxLength(25)
+                    .HasColumnName("password")
                     .IsFixedLength(true);
             });
 
