@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,7 @@ namespace Classroom.Models.Index
         public GroupModel(classroomContext _context)
         {
             context = _context;
+
         }
         public bool getTasks(int _idGroup, int _idUser)
         {
@@ -28,6 +30,7 @@ namespace Classroom.Models.Index
                         group = (context.Groups.Where(n => n.Id == tmpList[i].IdUser).First());
                     }*/
                     listTasks = context.Tasks.Where(n => n.IdGroup == _idGroup/*group.Id*/).OrderBy(n => n.DatePublished).ToList();
+
                 }
                 catch (Exception ex)
                 {

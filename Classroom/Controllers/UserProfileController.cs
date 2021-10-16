@@ -10,9 +10,11 @@ namespace Classroom.Controllers
     public class UserProfileController : Controller
     {
         public IHttpContextAccessor accessor;
+        private readonly classroomContext _context;
         //Just taking accessor for session
-        public UserProfileController(IHttpContextAccessor _accessor)
+        public UserProfileController(IHttpContextAccessor _accessor, classroomContext context)
         {
+            _context = context;
             accessor = _accessor;
 
         }

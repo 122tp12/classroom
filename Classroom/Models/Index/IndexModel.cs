@@ -14,9 +14,12 @@ namespace Classroom.Models.Index
         IHttpContextAccessor accessor;
         classroomContext context;
         public IndexModel(IHttpContextAccessor _accessor, classroomContext _context)
+
+
         {
             context = _context;
             accessor = _accessor;
+            _context = context;
         }
         public void getTasks(int _idUser)
         {
@@ -29,6 +32,7 @@ namespace Classroom.Models.Index
             }
 
             listMyGroups = context.Groups.Where(n=>n.IdOwner==_idUser).ToList();
+
         }
         
     }

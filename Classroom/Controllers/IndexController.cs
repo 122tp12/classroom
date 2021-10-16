@@ -41,6 +41,7 @@ namespace Classroom.Controllers
         {
             startUp();
             IndexModel model=new IndexModel(accessor, context);
+
             try
             {
                 model.getTasks(accessor.HttpContext.Session.GetInt32("user").Value);//тут має бути id user, яка буде братись з сесії
@@ -86,6 +87,7 @@ namespace Classroom.Controllers
             task.Name = title;
             task.IdGroup = id;
             task.Type =type;
+
             try
             {
                 task.FileName = uploadedFile.FileName;
@@ -163,6 +165,7 @@ namespace Classroom.Controllers
             {
                 return Content(ex.Message);
             }
+
             return View(model);
         }
 
