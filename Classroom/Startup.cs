@@ -2,6 +2,8 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
@@ -33,6 +35,7 @@ namespace Classroom
 
             services.AddDistributedMemoryCache();
 
+            services.AddDbContext<classroomContext>(option => option.UseSqlServer("Server=DESKTOP-QGEEUPD;Database=classroom;Trusted_Connection=True;"));
             services.AddSession(options =>
             {
                 options.IdleTimeout = TimeSpan.FromDays(1);
@@ -62,25 +65,58 @@ namespace Classroom
             {
                 
                 endpoints.MapControllerRoute(
-                       name: "Index",
+                       name: "Main",
                        pattern: "{controller=Index}/{action=Index}"
                 );
                 endpoints.MapControllerRoute(
-                       name: "Index",
+                       name: "Tasks",
                        pattern: "{controller=Index}/{action=TasksInGroup}/{id}"
                 );
                 endpoints.MapControllerRoute(
-                       name: "Index",
+                       name: "Peoples",
+                       pattern: "{controller=Index}/{action=PeopleInGroup}/{id}"
+                );
+                endpoints.MapControllerRoute(
+                       name: "Task",
                        pattern: "{controller=Index}/{action=Task}/{id}"
                 );
                 endpoints.MapControllerRoute(
-                       name: "IndexU",
+                       name: "Reaply",
+                       pattern: "{controller=Index}/{action=Reaply}/{id}"
+                );
+                endpoints.MapControllerRoute(
+                       name: "ReaplyDelete",
+                       pattern: "{controller=Index}/{action=ReaplyDelete}/{id}"
+                );
+                endpoints.MapControllerRoute(
+                       name: "User",
                        pattern: "{controller=User}/{action=Index}"
                 );
+                endpoints.MapControllerRoute(
+                       name: "file",
+                       pattern: "{controller=Index}/{action=DownloadFile}/{id}"
+                );
+                endpoints.MapControllerRoute(
+                       name: "file",
+                       pattern: "{controller=Index}/{action=DownloadTaskFile}/{id}"
+                );
+                
+                endpoints.MapControllerRoute(
+                    name:"Delete task", 
+                    pattern: "{controller=Index}/{action=DeleteTask}/{id}"
+                    );
+                endpoints.MapControllerRoute(
+                    name: "Delete Group",
+                    pattern: "{controller=Index}/{action=DeleteGroup}/{id}"
+                    );
                 endpoints.MapControllerRoute(
                        name: "IndexRL",
                        pattern: "{controller=RegAut}/{action=Index}"
                 );
+                endpoints.MapControllerRoute(
+                    name: "Create task",
+                    pattern: "{controller=Index}/{action=CreateTask}/{id}"
+                    ); 
 
             });
         }

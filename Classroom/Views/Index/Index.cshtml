@@ -10,16 +10,51 @@
     </div>
     <div class="rightMenuBlock">
         <ul class="menuUlStyle">
-            <li class="menuLiStyle menuText"><a class="aStyle" href=""><span class="orangeText">Lo</span><span class="yellowText">g</span><span class="blueText">in</span></a></li>
+            @if ((bool)ViewData["joined"] == false)
+            {
+                <li class="menuLiStyle menuText"><a class="aStyle" href="~/RegAut/Autoresation"><span class="orangeText">Lo</span><span class="yellowText">g</span><span class="blueText">in</span></a></li>
+            }
+            else
+            {
+                <li class="menuLiStyle menuText"><a class="aStyle" href="~/RegAut/Exit"><span class="orangeText">Lo</span><span class="yellowText">g</span><span class="blueText">in</span><span class="orangeText"> out</span></a></li>
+            }
+
         </ul>
     </div>
 </div>
 <div class="anderMenuLine"></div>
 
-<table>
-    @for (int i = 0; i < Model.listGroups.Count; i++)
-    {
-        <tr><td>@Model.listGroups[i].Id</td><td>@Model.listGroups[i].Name</td><td><a href="~/Index/TasksInGroup/@Model.listGroups[i].Id">link</a></td></tr>
-    }
-</table>
-<h1>index</h1>
+@if ((bool)ViewData["joined"] != false)
+{
+    <h3>My Groups</h3>
+    <table>
+        @foreach (Classroom.Group item in Model.listMyGroups)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+                <td><a href="~/Index/TasksInGroup/@item.Id">link</a></td>
+                <td><a href="~/Index/DeleteGroup/@item.Id">delete</a></td>
+
+            </tr>
+        }
+    </table>
+
+    <a href="~/GroupC/Create">Create group</a>
+    <hr />
+    <h3>Groups where i member</h3>
+    <table>
+        @for (int i = 0; i < Model.listGroups.Count; i++)
+        {
+            <tr><td>@Model.listGroups[i].Id</td><td>@Model.listGroups[i].Name</td><td><a href="~/Index/TasksInGroup/@Model.listGroups[i].Id">link</a></td></tr>
+        }
+    </table>
+    <br />
+    <br />
+    <a href="~/GroupC/Join">Join</a>
+}
+else
+{
+    <p>Must Join <a href="~/RegAut/Autoresation">link</a></p>
+}
+

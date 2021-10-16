@@ -17,6 +17,7 @@ namespace Classroom
         public string Name { get; set; }
         public string Description { get; set; }
         public int? IdOwner { get; set; }
+        public string Password { get; set; }
 
         public virtual User IdOwnerNavigation { get; set; }
         public virtual ICollection<GroupUser> GroupUsers { get; set; }

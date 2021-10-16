@@ -9,31 +9,68 @@ namespace Classroom.Models.Index
 {
     public class GroupModel: PageModel
     {
-        public List<Classroom.Task> listTasks;
-        private IHttpContextAccessor accessor;
-        private readonly classroomContext _context;
-        public GroupModel(IHttpContextAccessor _accessor,classroomContext context)
+        public List<Task> listTasks;
+        public List<User> members;
+        public User owner;
+        classroomContext context;
+        public GroupModel(classroomContext _context)
         {
-            accessor = _accessor;
-            _context = context;
-        }
-        public void getTasks(int _idGroup, int _idUser)
-        {
+            context = _context;
 
+        }
+        public bool getTasks(int _idGroup, int _idUser)
+        {
+            
                 try
                 {
-                    Group group=new Group();
-                    List<GroupUser> tmpList = _context.GroupUsers.Where(n => n.IdGroup == _idGroup && n.IdUser == _idUser).ToList();
+                    /*Group group=new Group();
+                    List<GroupUser> tmpList = context.GroupUsers.Where(n => n.IdGroup == _idGroup && n.IdUser == _idUser).ToList();
                     for (int i = 0; i < tmpList.Count; i++)
                     {
-                        group = (_context.Groups.Where(n => n.Id == tmpList[i].IdUser).First());
-                    }
-                    listTasks = _context.Tasks.Where(n => n.IdGroup == group.Id).OrderBy(n => n.DatePublished).ToList();
+                        group = (context.Groups.Where(n => n.Id == tmpList[i].IdUser).First());
+                    }*/
+                    listTasks = context.Tasks.Where(n => n.IdGroup == _idGroup/*group.Id*/).OrderBy(n => n.DatePublished).ToList();
+
                 }
                 catch (Exception ex)
                 {
                     
                 }
+            if (context.Groups.Where(n => n.Id == _idGroup).First().IdOwner == _idUser)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+            
+        }
+        public bool getPeoples(int _idGroup, int _idUser)
+        {
+            try
+            {
+                List<User> users=new List<User>();
+                List<GroupUser> l=context.GroupUsers.Where(n => n.IdGroup == _idGroup).ToList();
+                for(int i=0;i<l.Count ;i++ )
+                {
+                    users.Add(context.Users.Where(n=>n.Id== l[i].IdUser).FirstOrDefault());
+                }
+                members = users;
+                owner = context.Users.Where(n=>n.Id==(context.Groups.Where(n=>n.Id==_idGroup).FirstOrDefault().IdOwner)).FirstOrDefault();
+            }
+            catch(Exception ex)
+            {
+
+            }
+            if (context.Groups.Where(n => n.Id == _idGroup).First().IdOwner == _idUser)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

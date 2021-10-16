@@ -9,22 +9,30 @@ namespace Classroom.Models.Index
 {
     public class IndexModel : PageModel
     {
-        public List<Classroom.Group> listGroups;
-        private IHttpContextAccessor accessor;
-        private readonly classroomContext _context;
-        public IndexModel(IHttpContextAccessor _accessor, classroomContext context)
+        public List<Group> listGroups;
+        public List<Group> listMyGroups;
+        IHttpContextAccessor accessor;
+        classroomContext context;
+        public IndexModel(IHttpContextAccessor _accessor, classroomContext _context)
+
+
         {
+            context = _context;
             accessor = _accessor;
             _context = context;
         }
         public void getTasks(int _idUser)
         {
-                listGroups = new List<Group>();
-                List<GroupUser> tmpList = _context.GroupUsers.Where(n=>n.IdUser==_idUser).ToList();
-                for(int i=0;i<tmpList.Count ;i++ )
-                {
-                    listGroups.Add(_context.Groups.Where(n=>n.Id== tmpList[i].IdGroup).First());
-                }
+            
+            listGroups = new List<Classroom.Group>();
+            List<GroupUser> tmpList = context.GroupUsers.Where(n=>n.IdUser==_idUser).ToList();
+            for(int i=0;i<tmpList.Count ;i++ )
+            {
+                listGroups.Add(context.Groups.Where(n=>n.Id== tmpList[i].IdGroup).First());
+            }
+
+            listMyGroups = context.Groups.Where(n=>n.IdOwner==_idUser).ToList();
+
         }
         
     }

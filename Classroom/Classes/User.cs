@@ -11,6 +11,7 @@ namespace Classroom
         {
             GroupUsers = new HashSet<GroupUser>();
             Groups = new HashSet<Group>();
+            Reaplies = new HashSet<Reaply>();
         }
 
         public int Id { get; set; }
@@ -22,5 +23,6 @@ namespace Classroom
 
         public virtual ICollection<GroupUser> GroupUsers { get; set; }
         public virtual ICollection<Group> Groups { get; set; }
+        public virtual ICollection<Reaply> Reaplies { get; set; }
     }
 }

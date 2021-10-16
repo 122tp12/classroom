@@ -9,18 +9,16 @@ namespace Classroom.Models.RegAut
 {
     public class RegistrationModel : PageModel
     {
-        private IHttpContextAccessor accessor;
-        private readonly classroomContext _context;
 
-        public RegistrationModel(IHttpContextAccessor _accessor, classroomContext context)
+        classroomContext context;
+        public RegistrationModel(classroomContext _context)
         {
-            accessor = _accessor;
-            _context = context;
+            context = _context;
         }
         public void saveUser(User user)
         {
-            _context.Users.Add(user);
-            _context.SaveChanges();
+            context.Users.Add(user);
+            context.SaveChanges();
         }
     }
 }

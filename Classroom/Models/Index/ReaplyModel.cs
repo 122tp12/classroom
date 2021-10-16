@@ -2,43 +2,52 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Classroom.Models.Index
 {
-    public class TaskModel : PageModel
+    public class ReaplyModel : PageModel
     {
-        public Classroom.Task task;
-        public List<Reaply> reaplies;
-        public classroomContext context;
-        public TaskModel(classroomContext _context)
+        classroomContext context;
+        public int currentId;
+        public int userId;
+        public ReaplyModel(classroomContext _context)
         {
             context = _context;
         }
-        public bool getTask(int _idTask, int _ownerId)
+        public int saveReaply(Reaply reaply)
         {
-            
-            task = context.Tasks.Where(n => n.Id == _idTask).First();
-            if (context.Groups.Where(n=>n.Id== task.IdGroup).First().IdOwner == _ownerId)
+            context.Reaplies.Add(reaply);
+            context.SaveChanges();
+            return context.Reaplies.OrderBy(n=>n.Id).Last().Id;
+        }
+        public void SaveFile(IFormFile uploadedFile, int id)
+        {
+            if (uploadedFile != null)
             {
-                return true;
-            }
-            else
-            {
-                return false;
+                string path =  uploadedFile.FileName;
+                Thread t = new Thread(new ParameterizedThreadStart((object o)=> {
+                    IFormFile fileFrom = (IFormFile)o;
+                    using (var fileStream = new FileStream("wwwroot\\usersFiles\\" + id, FileMode.Create))
+                    {
+                        fileFrom.CopyToAsync(fileStream);
+                    }
+                }));
+                t.Start(uploadedFile);
+                // сохраняем файл в папку Files в каталоге wwwroot
             }
         }
-        public void getMyReaplyes(int _idTask, int _idUser, bool owned)
+        public int deleteReaply(int id)
         {
-            if (!owned)
-            {
-                reaplies = context.Reaplies.Where(n => n.IdTask == _idTask && n.IdUser == _idUser).ToList();
-            }
-            else
-            {
-                reaplies = context.Reaplies.Where(n => n.IdTask == _idTask).ToList();
-            }
+            Reaply r=context.Reaplies.Where(n => n.Id == id).FirstOrDefault();
+            System.IO.File.Delete("wwwroot\\usersFiles\\" + id);
+            context.Reaplies.Remove(r);
+            context.SaveChanges();
+            return r.IdTask.Value;
         }
         public byte[] getFile(string path)
         {
@@ -630,5 +639,74 @@ namespace Classroom.Models.Index
 
             return _mappings.TryGetValue(extension, out mime) ? mime : "application/octet-stream";
         }
+        /* public void getFile()
+        {
+            Stream stream = null;
+
+            //This controls how many bytes to read at a time and send to the client
+            int bytesToRead = 10000;
+
+            // Buffer to read bytes in chunk size specified above
+            byte[] buffer = new Byte[bytesToRead];
+
+            // The number of bytes read
+            try
+            {
+                //Create a WebRequest to get the file
+                HttpWebRequest fileReq = (HttpWebRequest)HttpWebRequest.Create(url);
+
+                //Create a response for this request
+                HttpWebResponse fileResp = (HttpWebResponse)fileReq.GetResponse();
+
+                if (fileReq.ContentLength > 0)
+                    fileResp.ContentLength = fileReq.ContentLength;
+
+                //Get the Stream returned from the response
+                stream = fileResp.GetResponseStream();
+
+                // prepare the response to the client. resp is the client Response
+                var resp = HttpContext.Current.Response;
+
+                //Indicate the type of data being sent
+                resp.ContentType = "application/octet-stream";
+
+                //Name the file 
+                resp.AddHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\"");
+                resp.AddHeader("Content-Length", fileResp.ContentLength.ToString());
+
+                int length;
+                do
+                {
+                    // Verify that the client is connected.
+                    if (resp.IsClientConnected)
+                    {
+                        // Read data into the buffer.
+                        length = stream.Read(buffer, 0, bytesToRead);
+
+                        // and write it out to the response's output stream
+                        resp.OutputStream.Write(buffer, 0, length);
+
+                        // Flush the data
+                        resp.Flush();
+
+                        //Clear the buffer
+                        buffer = new Byte[bytesToRead];
+                    }
+                    else
+                    {
+                        // cancel the download if client has disconnected
+                        length = -1;
+                    }
+                } while (length > 0); //Repeat until no data is read
+            }
+            finally
+            {
+                if (stream != null)
+                {
+                    //Close the input stream
+                    stream.Close();
+                }
+            }
+        }*/
     }
 }
