@@ -29,41 +29,56 @@
 {
     <h3 class="centerText">My Groups</h3>
 
-        @foreach (Classroom.Group item in Model.listMyGroups)
+    @foreach (Classroom.Group item in Model.listMyGroups)
+    {
+        <div class="flex menuBlock">
+
+            <div class=" flex leftMenuBlock">
+                <div class="margin-left13px">
+                    <a class="deleteButton" href="~/Index/DeleteGroup/@item.Id">
+                        <span class="material-icons">delete</span>
+                    </a>
+                </div>
+                <div class="margin-right13px margin-left13px">
+                    @item.Id @item.Name
+                </div>
+            </div>
+            <div class="rightMenuBlock button margin-right13px">
+                <a class="linksStyle" href="~/Index/TasksInGroup/@item.Id">Перейти до групи</a>
+            </div>
+        </div>
+    }
+
+    <div class="rightMenuBlock button margin-left13px">
+        <a class="linksStyle" href="~/GroupC/Create">Create group</a>
+    </div>
+        <hr />
+
+
+        <h3 class="centerText">Groups where i member</h3>
+
+        @for (int i = 0; i < Model.listGroups.Count; i++)
         {
             <div class="flex menuBlock">
-
                 <div class=" flex leftMenuBlock">
-                    <div class="margin-left13px">
-                        <a class="deleteButton" href="~/Index/DeleteGroup/@item.Id">
-                            <span class="material-icons">delete</span>
-                        </a>
-                    </div>
                     <div class="margin-right13px margin-left13px">
-                        @item.Id @item.Name
+                        @Model.listGroups[i].Id @Model.listGroups[i].Name
                     </div>
                 </div>
                 <div class="rightMenuBlock button margin-right13px">
-                    <a class="linksStyle" href="~/Index/TasksInGroup/@item.Id">Перейти до групи</a>
+                    <a class="linksStyle" href="~/Index/TasksInGroup/@Model.listGroups[i].Id">Перейти до групи</a>
                 </div>
             </div>
         }
 
-    <a href="~/GroupC/Create">Create group</a>
-    <hr />
-    <h3>Groups where i member</h3>
-    <table>
-        @for (int i = 0; i < Model.listGroups.Count; i++)
-        {
-            <tr><td>@Model.listGroups[i].Id</td><td>@Model.listGroups[i].Name</td><td><a href="~/Index/TasksInGroup/@Model.listGroups[i].Id">link</a></td></tr>
+        <br />
+        <br />
+        <div class="rightMenuBlock button margin-left13px">
+            <a class="linksStyle" href="~/GroupC/Join">Join</a>
+        </div>
         }
-    </table>
-    <br />
-    <br />
-    <a href="~/GroupC/Join">Join</a>
-}
-else
-{
-    
-}
+        else
+        {
+
+        }
 
