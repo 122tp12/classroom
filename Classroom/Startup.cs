@@ -24,8 +24,7 @@ namespace Classroom
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddDbContext<classroomContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            
 
             services.AddDatabaseDeveloperPageExceptionFilter();
 
