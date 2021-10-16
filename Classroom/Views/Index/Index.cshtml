@@ -28,18 +28,26 @@
 @if ((bool)ViewData["joined"] != false)
 {
     <h3>My Groups</h3>
-    <table>
+
         @foreach (Classroom.Group item in Model.listMyGroups)
         {
-            <tr>
-                <td>@item.Id</td>
-                <td>@item.Name</td>
-                <td><a href="~/Index/TasksInGroup/@item.Id">link</a></td>
-                <td><a href="~/Index/DeleteGroup/@item.Id">delete</a></td>
+            <div class="flex menuBlock">
 
-            </tr>
+                <div class=" flex leftMenuBlock">
+                    <div class="margin-left13px">
+                        <a class="deleteButton" href="~/Index/DeleteGroup/@item.Id">
+                            <span class="material-icons">delete</span>
+                        </a>
+                    </div>
+                    <div class="margin-right13px margin-left13px">
+                        @item.Id @item.Name
+                    </div>
+                </div>
+                <div class="rightMenuBlock button margin-right13px">
+                    <a class="linksStyle" href="~/Index/TasksInGroup/@item.Id">Перейти до групи</a>
+                </div>
+            </div>
         }
-    </table>
 
     <a href="~/GroupC/Create">Create group</a>
     <hr />
