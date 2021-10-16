@@ -43,7 +43,7 @@ namespace Classroom.Models.Index
             }
             
         }
-        public void getPeoples(int _idGroup)
+        public bool getPeoples(int _idGroup, int _idUser)
         {
             try
             {
@@ -59,6 +59,14 @@ namespace Classroom.Models.Index
             catch(Exception ex)
             {
 
+            }
+            if (context.Groups.Where(n => n.Id == _idGroup).First().IdOwner == _idUser)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
     }

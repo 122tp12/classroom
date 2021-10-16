@@ -10,20 +10,34 @@ namespace Classroom.Models.Index
     {
         public Classroom.Task task;
         public List<Reaply> reaplies;
-        classroomContext context;
+        public classroomContext context;
         public TaskModel(classroomContext _context)
         {
             context = _context;
         }
-        public void getTask(int _idTask)
+        public bool getTask(int _idTask, int _ownerId)
         {
             
             task = context.Tasks.Where(n => n.Id == _idTask).First();
-            
+            if (context.Groups.Where(n=>n.Id== task.IdGroup).First().IdOwner == _ownerId)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
-        public void getMyReaplyes(int _idTask, int _idUser)
+        public void getMyReaplyes(int _idTask, int _idUser, bool owned)
         {
-            reaplies=context.Reaplies.Where(n => n.IdTask == _idTask && n.IdUser == _idUser).ToList() ;
+            if (!owned)
+            {
+                reaplies = context.Reaplies.Where(n => n.IdTask == _idTask && n.IdUser == _idUser).ToList();
+            }
+            else
+            {
+                reaplies = context.Reaplies.Where(n => n.IdTask == _idTask).ToList();
+            }
         }
         public byte[] getFile(string path)
         {

@@ -105,6 +105,8 @@ namespace Classroom
 
                 entity.Property(e => e.IdUser).HasColumnName("id_user");
 
+                entity.Property(e => e.Mark).HasColumnName("mark");
+
                 entity.HasOne(d => d.IdTaskNavigation)
                     .WithMany(p => p.Reaplies)
                     .HasForeignKey(d => d.IdTask)

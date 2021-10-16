@@ -86,10 +86,18 @@ namespace Classroom.Controllers
             task.Name = title;
             task.IdGroup = id;
             task.Type =type;
-            task.FileName = uploadedFile.FileName;
+            try
+            {
+                task.FileName = uploadedFile.FileName;
 
-            int idFile=model.saveTask(task);
-            model.SaveFile(uploadedFile, idFile);
+                int idFile = model.saveTask(task);
+
+                model.SaveFile(uploadedFile, idFile);
+            }
+            catch (Exception ex)
+            {
+
+            }
 
             return Redirect("~/");
         }
@@ -109,29 +117,47 @@ namespace Classroom.Controllers
             ViewData["currentId"] = id;
 
             GroupModel model = new GroupModel(context);
+            bool owned=false;
             try
             {
-                model.getPeoples(id);//тут має бути id групи, яка буде братись get запроса
+                owned=model.getPeoples(id, accessor.HttpContext.Session.GetInt32("user").Value);//тут має бути id групи, яка буде братись get запроса
             }
             catch (Exception ex)
             {
                 //return Redirect("~/RegAut/Autoresation");//model.getTasks(1);//тимчасово, доки не ма перевірки на те чи залогінений юзер
             }
-
+            ViewData["owned"] = owned;
             return View(model);
         }
-        
-
+        [HttpPost]
+        public IActionResult SetMark(int idReaply, int mark)
+        {
+            Reaply r= context.Reaplies.Where(n => n.Id == idReaply).FirstOrDefault();
+            r.Mark = mark;
+            context.Reaplies.Update(r);
+            context.SaveChanges();
+            return Redirect("~/Index/Task/"+context.Tasks.Where(n=>n.Id==r.IdTask).First().Id);
+        }
+        [HttpPost]
+        public IActionResult DeletePeopleInGroup(int userId, int groupId)
+        {
+            
+            GroupUser gu= context.GroupUsers.Where(n => n.IdUser == userId&&n.IdGroup==groupId).FirstOrDefault();
+            context.GroupUsers.Remove(gu);
+            context.SaveChanges();
+            return Redirect("~/Index/PeopleInGroup/" + groupId);
+        }
         //окремий таск
         [HttpGet]
         public IActionResult Task(int id)
         {
             startUp();
             TaskModel model = new TaskModel(context);
-            model.getTask(id);//тут має бути id таска, яка буде братись get запроса
+            bool owned=model.getTask(id, accessor.HttpContext.Session.GetInt32("user").Value);
+            ViewData["owned"] = owned;
             try
             {
-                model.getMyReaplyes(id, accessor.HttpContext.Session.GetInt32("user").Value);
+                model.getMyReaplyes(id, accessor.HttpContext.Session.GetInt32("user").Value, owned);
             }
             catch(Exception ex)
             {
