@@ -54,3 +54,29 @@
 .menuText {
   font-size: 1.4em;
   font-weight: 300; }
+
+.deleteButton {
+  color: red; }
+
+.deleteButton span {
+  font-size: 1.4em; }
+
+.margin-right13px {
+  margin-right: 13px; }
+
+.margin-left13px {
+  margin-left: 13px; }
+
+.linksStyle {
+  text-decoration: none;
+  color: white; }
+
+.button {
+  height: 30px;
+  width: 200px;
+  background: #fc692a;
+  border-bottom: 4px solid #db541a;
+  border-radius: 5px;
+  text-align: center;
+  color: white;
+  font-size: 1em; }
