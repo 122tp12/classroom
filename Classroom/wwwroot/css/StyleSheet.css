@@ -29,7 +29,9 @@
   color: orangered; }
 
 .flex {
-  display: flex;
+  display: flex; }
+
+.spaceBetween {
   justify-content: space-between; }
 
 .menuBlock {
@@ -39,7 +41,9 @@
   margin: 0px;
   padding: 0px; }
   .menuUlStyle .menuLiStyle {
-    list-style-type: none; }
+    list-style-type: none;
+    margin-left: 13px;
+    margin-right: 13px; }
   .menuUlStyle .aStyle {
     text-decoration: none; }
 
