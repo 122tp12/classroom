@@ -1,1 +1,11 @@
-﻿<h1>Index user page</h1>
+﻿@model Classroom.Models.UserProfile.ProfileModel;
+<h1>Index user page</h1>
+
+<form method="post" action="~/UserProfile/update" enctype="multipart/form-data">
+    <span>name: </span><input name="name" value="@Model.user.Name" />
+    <span>description: </span><input name="description" value="@Model.user.Description" />
+    <span>email: </span><input name="email" value="@Model.user.Email" />
+    <span>password: </span><input name="password" value="@Model.user.Password" />
+    <span>img: </span><input type="file" name="img"/><img src="~/profilePhoto/@{ @Model.user.Id}.jpg"/>
+    <input type="submit"/>
+</form>
