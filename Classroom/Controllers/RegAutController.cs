@@ -30,9 +30,9 @@ namespace Classroom.Controllers
             return Redirect("~/");
         }
         [HttpPost]
-        public IActionResult RegistrationSave(String name, String password, String email, String img, String description)
+        public IActionResult RegistrationSave(String name, String password, String email, String description)
         {
-            User u = new User() { Name=name, Password=password, Email=email, ImgPath=img, Description=description};
+            User u = new User() { Name=name, Password=password, Email=email, Description=description};
 
             RegistrationModel model = new RegistrationModel(context);
 
