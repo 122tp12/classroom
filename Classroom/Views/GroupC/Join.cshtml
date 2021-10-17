@@ -5,10 +5,24 @@
 
 @if ((bool)ViewData["joined"] != false)
 {
-    <form action="~/GroupC/JoinConfirm" method="post">
-        <span>Id:</span><input type="number" name="id" /><br />
-        <span>Password:</span><input type="password" name="password" /><br />
-        <input type="submit" />
+
+
+    <form class="decor" action="~/GroupC/JoinConfirm" method="post">
+        <div class="form-left-decoration"></div>
+        <div class="form-right-decoration"></div>
+        <div class="circle"></div>
+        <div class="form-inner centerText">
+            <h3 style="text-align: center;">Ввійти в групу</h3>
+            <br />
+            <label>Id</label>
+            <input type="text" name="id" placeholder="id" />
+
+            <label>Password</label>
+            <input type="password" name="password" placeholder="password" />
+
+            <input type="submit" value="Ввійти">
+
+        </div>
     </form>
 
 }
