@@ -7,67 +7,65 @@
 {
     @if (!(bool)ViewData["owned"])
     {
-        <div class="whiteSpace">
-            <h4 class="centerText">Завдання</h4>
-
-            @for (int i = 0; i < Model.listTasks.Count; i++)
-            {
-                <div class="flex spaceBetween menuBlock">
-                    <div class=" flex leftMenuBlock"></div>
-                    <div class="rightMenuBlock button margin-right30px">
-                        <a class="linksStyle" href="~/Index/PeopleInGroup/@ViewData["currentId"]">Члени групи</a>
-                    </div>
-                </div>
-                <div class="flex spaceBetween menuBlock">
-                    <div class=" flex leftMenuBlock">
-                        <div class="margin-right13px margin-left30px">
-                            <span>@Model.listTasks[i].Id </span>
-                            <span>@Model.listTasks[i].Name</span>
-                            <span>@Model.listTasks[i].Description</span>
-                        </div>
-                    </div>
-                    <div class="rightMenuBlock button margin-right30px">
-                        <a class="linksStyle" href="~/Index/Task/@Model.listTasks[i].Id">До завдання</a>
-                    </div>
-                </div>
-            }
+<div class="whiteSpace">
+    <h4 class="centerText">Завдання</h4>
+    <div class="flex spaceBetween menuBlock">
+        <div class=" flex leftMenuBlock"></div>
+        <div class="rightMenuBlock button3 margin-right30px">
+            <a class="linksStyle" href="~/Index/PeopleInGroup/@ViewData["currentId"]">Члени групи</a>
         </div>
+    </div>
+    @for (int i = 0; i < Model.listTasks.Count; i++)
+    {
+        <div class="flex spaceBetween menuBlock">
+            <div class=" flex leftMenuBlock">
+                <div class="margin-right13px margin-left30px">
+                    <span>@Model.listTasks[i].Id </span>
+                    <span>@Model.listTasks[i].Name</span>
+                    <span>@Model.listTasks[i].Description</span>
+                </div>
+            </div>
+            <div class="rightMenuBlock button margin-right30px">
+                <a class="linksStyle" href="~/Index/Task/@Model.listTasks[i].Id">До завдання</a>
+            </div>
+        </div>
+    }
+</div>
     }
     else
     {
-        <div class="whiteSpace">
-
-            <h4 class="centerText">Завдання</h4>
-            @for (int i = 0; i < Model.listTasks.Count; i++)
-            {
-                <div class="flex spaceBetween menuBlock">
-                    <div class=" flex leftMenuBlock"></div>
-                    <div class="rightMenuBlock button margin-right30px">
-                        <a class="linksStyle" href="~/Index/PeopleInGroup/@ViewData["currentId"]">Члени групи</a>
-                    </div>
+<div class="whiteSpace">
+    <div class="flex spaceBetween menuBlock">
+        <div class=" flex leftMenuBlock"></div>
+        <div class="rightMenuBlock button3 margin-right30px">
+            <a class="linksStyle" href="~/Index/PeopleInGroup/@ViewData["currentId"]">Члени групи</a>
+        </div>
+    </div>
+    <h4 class="centerText">Завдання</h4>
+    @for (int i = 0; i < Model.listTasks.Count; i++)
+    {
+        <div class="flex spaceBetween menuBlock">
+            <div class=" flex leftMenuBlock">
+                <div class="margin-left30px">
+                    <a class="deleteButton" href="~/Index/DeleteTask/@Model.listTasks[i].Id">
+                        <span class="material-icons">delete</span>
+                    </a>
                 </div>
-                <div class="flex spaceBetween menuBlock">
-                    <div class=" flex leftMenuBlock">
-                        <div class="margin-left30px">
-                            <a class="deleteButton" href="~/Index/DeleteTask/@Model.listTasks[i].Id">
-                                <span class="material-icons">delete</span>
-                            </a>
-                        </div>
-                        <div class="margin-right13px margin-left30px">
-                            <span>@Model.listTasks[i].Id </span>
-                            <span>@Model.listTasks[i].Name</span>
-                            <span>@Model.listTasks[i].Description</span>
-                        </div>
-                    </div>
-                    <div class="rightMenuBlock button margin-right30px">
-                        <a class="linksStyle" href="~/Index/Task/@Model.listTasks[i].Id">До завдання</a>
-                    </div>
+                <div class="margin-right13px margin-left30px">
+                    <span>@Model.listTasks[i].Id </span>
+                    <span>@Model.listTasks[i].Name</span>
+                    <span>@Model.listTasks[i].Description</span>
                 </div>
-            }
-            <div class="downButton">
-                <a class="linksStyle" href="~/Index/CreateTask/@ViewData["currentId"]">Створити нове</a>
+            </div>
+            <div class="rightMenuBlock button margin-right30px">
+                <a class="linksStyle" href="~/Index/Task/@Model.listTasks[i].Id">До завдання</a>
             </div>
         </div>
+    }
+    <div class="downButton">
+        <a class="linksStyle" href="~/Index/CreateTask/@ViewData["currentId"]">Створити нове</a>
+    </div>
+</div>
     }
 }
 else
