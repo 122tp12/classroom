@@ -1,1 +1,30 @@
-﻿<h1>Index user page</h1>
+﻿@model Classroom.Models.UserProfile.ProfileModel;
+
+
+<form class="decor" method="post" action="~/UserProfile/update" enctype="multipart/form-data">
+    <div class="form-left-decoration"></div>
+    <div class="form-right-decoration"></div>
+    <div class="circle"></div>
+    <div class="form-inner centerText">
+        <h3 style="text-align: center;">Мій профіль</h3>
+        <br />
+        <label>Name</label>
+        <input type="text" name="name" placeholder="name" value="@Model.user.Name" />
+
+        <label>Description</label>
+        <input type="text" name="description" placeholder="description" value="@Model.user.Description" />
+
+        <label>Email</label>
+        <input type="text" name="email" placeholder="email" value="@Model.user.Email" />
+
+        <label>Password</label>
+        <input type="password" name="password" placeholder="password" value="@Model.user.Password" />
+
+        <label>Img</label>
+        <input type="file" name="img" value="@Model.user.Password" />
+        <img width="150px" height="150px" src="~/profilePhoto/@{ @Model.user.Id}.jpg" />
+
+        <input type="submit" value="Ввійти">
+
+    </div>
+</form>

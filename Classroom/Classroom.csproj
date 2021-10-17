@@ -28,6 +28,7 @@
   <ItemGroup>
     <Folder Include="wwwroot\usersFiles\" />
     <Folder Include="wwwroot\tasksFiles\" />
+    <Folder Include="wwwroot\profilePhoto\" />
   </ItemGroup>
 
 </Project>
