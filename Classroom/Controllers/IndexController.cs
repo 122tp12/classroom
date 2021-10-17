@@ -53,12 +53,12 @@ namespace Classroom.Controllers
             return View(model);
         }
 
-        public IActionResult DeleteTask(int id)
+        public IActionResult DeleteTask(int id, int returnId)
         {
             System.IO.File.Delete("wwwroot\\tasksFiles\\"+id);
             context.Tasks.Remove(context.Tasks.Where(n=>n.Id==id).FirstOrDefault());
             context.SaveChanges();
-            return Redirect("~/");
+            return Redirect("~/Index/TaskInGroup/returnId");
         }
         public IActionResult DeleteGroup(int id)
         {
@@ -108,7 +108,7 @@ namespace Classroom.Controllers
             startUp();
             ViewData["currentId"] = id;
 
-            GroupModel model = new GroupModel(context);
+            GroupModel model = new GroupModel(context, id);
             bool owned=model.getTasks(id, accessor.HttpContext.Session.GetInt32("user").Value);//тут має бути id групи, яка буде братись get запроса
             ViewData["owned"] = owned;
             return View(model);
@@ -118,7 +118,7 @@ namespace Classroom.Controllers
             startUp();
             ViewData["currentId"] = id;
 
-            GroupModel model = new GroupModel(context);
+            GroupModel model = new GroupModel(context, id);
             bool owned=false;
             try
             {
