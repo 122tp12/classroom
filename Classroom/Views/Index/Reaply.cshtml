@@ -6,14 +6,27 @@
 
 @if ((bool)ViewData["joined"] != false)
 {
-<form action="~/Index/ReaplySave" method="post" enctype="multipart/form-data">
-    <input type="hidden" name="id" value="@Model.currentId" />
-    <input type="hidden" name="userId" value="@Model.userId" />
 
-    <textarea name="description"></textarea>
-    <input type="file" name="uploadedFile" />
-    @*add sending file*@
-    <input type="submit" value="submith" />
+
+
+<form class="decor" action="~/Index/ReaplySave" method="post" enctype="multipart/form-data">
+    <div class="form-left-decoration"></div>
+    <div class="form-right-decoration"></div>
+    <div class="circle"></div>
+    <div class="form-inner centerText">
+        <input type="hidden" name="id" value="@Model.currentId" />
+        <input type="hidden" name="userId" value="@Model.userId" />
+        <h3 style="text-align: center;">Створити відповідь</h3>
+        <br />
+        <label>Description</label>
+        <textarea type="text" name="description" placeholder="description"></textarea>
+
+        <label>File</label>
+        <input type="file" name="uploadedFile" />
+
+        <input type="submit" value="Створити">
+
+    </div>
 </form>
 }
 else

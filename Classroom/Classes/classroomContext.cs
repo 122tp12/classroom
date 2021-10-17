@@ -170,10 +170,6 @@ namespace Classroom
                     .HasColumnName("email")
                     .IsFixedLength(true);
 
-                entity.Property(e => e.ImgPath)
-                    .HasMaxLength(50)
-                    .HasColumnName("img_path")
-                    .IsFixedLength(true);
 
                 entity.Property(e => e.Name)
                     .HasMaxLength(30)
