@@ -12,8 +12,11 @@
 
             @for (int i = 0; i < Model.listTasks.Count; i++)
             {
-                <div class="rightMenuBlock button margin-right30px">
-                    <a class="linksStyle" href="~/Index/PeopleInGroup/@ViewData["currentId"]">Члени групи></a>
+                <div class="flex spaceBetween menuBlock">
+                    <div class=" flex leftMenuBlock"></div>
+                    <div class="rightMenuBlock button margin-right30px">
+                        <a class="linksStyle" href="~/Index/PeopleInGroup/@ViewData["currentId"]">Члени групи</a>
+                    </div>
                 </div>
                 <div class="flex spaceBetween menuBlock">
                     <div class=" flex leftMenuBlock">
@@ -38,9 +41,12 @@
             @for (int i = 0; i < Model.listTasks.Count; i++)
             {
                 <div class="flex spaceBetween menuBlock">
+                    <div class=" flex leftMenuBlock"></div>
                     <div class="rightMenuBlock button margin-right30px">
-                        <a class="linksStyle" href="~/Index/PeopleInGroup/@ViewData["currentId"]">Члени групи></a>
+                        <a class="linksStyle" href="~/Index/PeopleInGroup/@ViewData["currentId"]">Члени групи</a>
                     </div>
+                </div>
+                <div class="flex spaceBetween menuBlock">
                     <div class=" flex leftMenuBlock">
                         <div class="margin-left30px">
                             <a class="deleteButton" href="~/Index/DeleteTask/@Model.listTasks[i].Id">
