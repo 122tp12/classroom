@@ -4,42 +4,79 @@
     Layout = "_Layout";
 }
 
+<div class="flex spaceBetween menuBlock">
+    <div class="leftMenuBlock">
+        <ul class=" flex button2 menuUlStyle">
+            <li class="menuLiStyle menuText"><a class="aStyle" href=""><span class="yellowText">Me</span><span class="orangeText">nu</span></a></li>
+        </ul>
+    </div>
+    <div class="rightMenuBlock">
+        <ul class="flex menuUlStyle">
+            @if ((bool)ViewData["joined"] == false)
+            {
+                <li class="menuLiStyle button2 menuText"><a class="aStyle" href="~/RegAut/Autoresation"><span class="orangeText">Lo</span><span class="yellowText">g</span><span class="blueText">in</span></a></li>
+            }
+            else
+            {
+                <li class="menuLiStyle button2 menuText"><a class="aStyle" href="~/UserProfile/"><span class="blueText">Pr</span><span class="yellowText">of</span><span class="orangeText">ile</span></a></li>
+                <li class="menuLiStyle button2 menuText"><a class="aStyle" href="~/RegAut/Exit"><span class="orangeText">Lo</span><span class="yellowText">g o</span><span class="orangeText">ut</span></a></li>
+
+            }
+
+        </ul>
+    </div>
+</div>
+<div class="anderMenuLine"></div>
 
 @if ((bool)ViewData["joined"] != false)
 {
     @if ((bool)ViewData["owned"])
     {
-        <h4><a href="~/Index/TasksInGroup/@ViewData["currentId"]">Tasks</a></h4>
-        <h4>Owner: @Model.owner.Name</h4>
-        <ul>
+        <div class="whiteSpace">
+            <h4 class="centerText">Члени групи</h4>
+            <h4>Власник: @Model.owner.Name</h4>
+            <div class="flex spaceBetween menuBlock">
+                <div class="flex leftMenuBlock"></div>
+                <div class="rightMenuBlock button3 margin-right30px">
+                    <a href="~/Index/TasksInGroup/@ViewData["currentId"]">Завдання</a>
+                </div>
+            </div>
+
+
             @for (int i = 0; i < Model.members.Count; i++)
             {
-                <li>
-                    @Model.members[i].Name
+                <div class="flex spaceCenter menuBlock">
                     <form method="post" action="~/Index/DeletePeopleInGroup">
                         <input type="hidden" name="userId" value="@Model.members[i].Id" />
                         <input type="hidden" name="groupId" value="@ViewData["currentId"]" />
-                        <input type="submit" value="delete" />
+                        <input class="deleteButton material-icons" style="border: 0px; background: white;" type="submit" value="delete" />
                     </form>
-                </li>
+                    <span>@Model.members[i].Name</span>
+                </div>
+
             }
-        </ul>
+        </div>
     }
     else
     {
-        <h4><a href="~/Index/TasksInGroup/@ViewData["currentId"]">Tasks</a></h4>
-        <h4>Owner: @Model.owner.Name</h4>
-        <ul>
+        <div class="whiteSpace">
+            <h4>Власник: @Model.owner.Name</h4>
+            <div class="flex spaceBetween menuBlock">
+                <div class="flex leftMenuBlock"></div>
+                <div class="rightMenuBlock button3 margin-right30px">
+                    <a href="~/Index/TasksInGroup/@ViewData["currentId"]">Завдання</a>
+                </div>
+            </div>
             @for (int i = 0; i < Model.members.Count; i++)
             {
-                <li>
-                    @Model.members[i].Name
-                </li>
+                <div class="flex spaceCenter menuBlock">
+                    <span>@Model.members[i].Name</span>
+                </div>
             }
-        </ul>
-    }
+            }
+        </div>
 
-}
+    }
 else
 {
     <p>Must Join <a href="~/RegAut/Autoresation">link</a></p>
