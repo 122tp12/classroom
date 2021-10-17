@@ -14,12 +14,12 @@
         <ul class="flex menuUlStyle">
             @if ((bool)ViewData["joined"] == false)
             {
-                <li class="menuLiStyle button2 menuText"><a class="aStyle" href="~/RegAut/Autoresation"><span class="orangeText">Lo</span><span class="yellowText">g</span><span class="blueText">in</span></a></li>
+                <li class="menuLiStyle margin-left13px button2 menuText"><a class="aStyle" href="~/RegAut/Autoresation"><span class="orangeText">Lo</span><span class="yellowText">g</span><span class="blueText">in</span></a></li>
             }
             else
             {
-                <li class="menuLiStyle button2 menuText"><a class="aStyle" href="~/UserProfile/"><span class="blueText">Pr</span><span class="yellowText">of</span><span class="orangeText">ile</span></a></li>
-                <li class="menuLiStyle button2 menuText"><a class="aStyle" href="~/RegAut/Exit"><span class="orangeText">Lo</span><span class="yellowText">g o</span><span class="orangeText">ut</span></a></li>
+                <li class="menuLiStyle margin-right13px button2 menuText"><a class="aStyle" href="~/UserProfile/"><span class="blueText">Pr</span><span class="yellowText">of</span><span class="orangeText">ile</span></a></li>
+                <li class="menuLiStyle margin-right13px button2 menuText"><a class="aStyle" href="~/RegAut/Exit"><span class="orangeText">Lo</span><span class="yellowText">g o</span><span class="orangeText">ut</span></a></li>
 
             }
 
@@ -34,7 +34,7 @@
     {
         <div class="whiteSpace">
             <h4 class="centerText">Члени групи</h4>
-            <h4>Власник: @Model.owner.Name</h4>
+            <h4 class="centerText">Власник: @Model.owner.Name</h4>
             <div class="flex spaceBetween menuBlock">
                 <div class="flex leftMenuBlock"></div>
                 <div class="rightMenuBlock button3 margin-right30px">
@@ -60,7 +60,8 @@
     else
     {
         <div class="whiteSpace">
-            <h4>Власник: @Model.owner.Name</h4>
+            <h4 class="centerText">Члени групи</h4>
+            <h4 class="centerText">Власник: @Model.owner.Name</h4>
             <div class="flex spaceBetween menuBlock">
                 <div class="flex leftMenuBlock"></div>
                 <div class="rightMenuBlock button3 margin-right30px">
@@ -73,10 +74,10 @@
                     <span>@Model.members[i].Name</span>
                 </div>
             }
-            }
         </div>
 
     }
+}
 else
 {
     <p>Must Join <a href="~/RegAut/Autoresation">link</a></p>
