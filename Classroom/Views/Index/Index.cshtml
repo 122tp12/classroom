@@ -2,21 +2,23 @@
 @{
     Layout = "_Layout";
 }
-<div class="flex menuBlock">
+<div class="flex spaceBetween menuBlock">
     <div class="leftMenuBlock">
-        <ul class="menuUlStyle">
-            <li class="menuLiStyle menuText"><a class="aStyle" href=""><span class="yellowText">Me</span><span class="orangeText">nu</span></a></li>
+        <ul class=" flex button2 menuUlStyle">
+            <li class="menuLiStyle menuText"><a class="aStyle" href="~/"><span class="yellowText">Me</span><span class="orangeText">nu</span></a></li>
         </ul>
     </div>
     <div class="rightMenuBlock">
-        <ul class="menuUlStyle">
+        <ul class="flex menuUlStyle">
             @if ((bool)ViewData["joined"] == false)
             {
-                <li class="menuLiStyle menuText"><a class="aStyle" href="~/RegAut/Autoresation"><span class="orangeText">Lo</span><span class="yellowText">g</span><span class="blueText">in</span></a></li>
+                <li class="menuLiStyle button2 menuText"><a class="aStyle" href="~/RegAut/Autoresation"><span class="orangeText">Lo</span><span class="yellowText">g</span><span class="blueText">in</span></a></li>
             }
             else
             {
-                <li class="menuLiStyle menuText"><a class="aStyle" href="~/RegAut/Exit"><span class="orangeText">Lo</span><span class="yellowText">g</span><span class="blueText">in</span><span class="orangeText"> out</span></a></li>
+                <li class="menuLiStyle button2 menuText"><a class="aStyle" href="~/UserProfile/"><span class="blueText">Pr</span><span class="yellowText">of</span><span class="orangeText">ile</span></a></li>
+                <li class="menuLiStyle button2 menuText"><a class="aStyle" href="~/RegAut/Exit"><span class="orangeText">Lo</span><span class="yellowText">g o</span><span class="orangeText">ut</span></a></li>
+
             }
 
         </ul>
@@ -25,36 +27,66 @@
 <div class="anderMenuLine"></div>
 
 @if ((bool)ViewData["joined"] != false)
+
 {
-    <h3>My Groups</h3>
-    <table>
+    <div class="whiteSpace">
+        <h3 class="centerText">Мої групи</h3>
+
         @foreach (Classroom.Group item in Model.listMyGroups)
         {
-            <tr>
-                <td>@item.Id</td>
-                <td>@item.Name</td>
-                <td><a href="~/Index/TasksInGroup/@item.Id">link</a></td>
-                <td><a href="~/Index/DeleteGroup/@item.Id">delete</a></td>
+            <div class="flex spaceBetween menuBlock">
 
-            </tr>
+
+                <div class=" flex leftMenuBlock">
+                    <div class="margin-left30px">
+                        <a class="deleteButton" href="~/Index/DeleteGroup/@item.Id">
+                            <span class="material-icons">delete</span>
+                        </a>
+                    </div>
+                    <div class="margin-right13px margin-left13px">
+                        @item.Id @item.Name
+                    </div>
+                </div>
+
+                <div class="rightMenuBlock button margin-right30px  margin-left13px">
+                    <a class="linksStyle" href="~/Index/TasksInGroup/@item.Id">Перейти до групи</a>
+                </div>
+
+            </div>
+
         }
-    </table>
 
-    <a href="~/GroupC/Create">Create group</a>
-    <hr />
-    <h3>Groups where i member</h3>
-    <table>
+        <div class="downButton">
+            <a class="linksStyle" href="~/GroupC/Create">Створити власну</a>
+        </div>
+    </div>
+
+    <div class="whiteSpace">
+        <h3 class="centerText">Групи в яких я є членом</h3>
+
         @for (int i = 0; i < Model.listGroups.Count; i++)
         {
-            <tr><td>@Model.listGroups[i].Id</td><td>@Model.listGroups[i].Name</td><td><a href="~/Index/TasksInGroup/@Model.listGroups[i].Id">link</a></td></tr>
+            <div class="flex spaceBetween menuBlock">
+                <div class=" flex leftMenuBlock">
+                    <div class="margin-right13px margin-left30px">
+                        @Model.listGroups[i].Id @Model.listGroups[i].Name
+                    </div>
+                </div>
+                <div class="rightMenuBlock button margin-right30px">
+                    <a class="linksStyle" href="~/Index/TasksInGroup/@Model.listGroups[i].Id">Перейти до групи</a>
+                </div>
+            </div>
         }
-    </table>
-    <br />
-    <br />
-    <a href="~/GroupC/Join">Join</a>
-}
-else
-{
-    <p>Must Join <a href="~/RegAut/Autoresation">link</a></p>
-}
+
+        <br />
+        <br />
+        <div class="downButton">
+            <a class="linksStyle" href="~/GroupC/Join">Долучитись до групи</a>
+        </div>
+    </div>
+        }
+        else
+        {
+
+        }
 
