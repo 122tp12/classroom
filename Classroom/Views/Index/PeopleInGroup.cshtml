@@ -32,15 +32,16 @@
 {
     @if ((bool)ViewData["owned"])
     {
-        <div class="whiteSpace">
+        <div class="whiteSpace" style="padding-left: 20px;">
             <h4 class="centerText">Члени групи</h4>
-            <h4>Власник: @Model.owner.Name</h4>
             <div class="flex spaceBetween menuBlock">
                 <div class="flex leftMenuBlock"></div>
                 <div class="rightMenuBlock button3 margin-right30px">
-                    <a href="~/Index/TasksInGroup/@ViewData["currentId"]">Завдання</a>
+                    <a class="linksStyle" href="~/Index/TasksInGroup/@ViewData["currentId"]">Завдання</a>
                 </div>
             </div>
+            <h4>Власник: @Model.owner.Name</h4>
+
 
 
             @for (int i = 0; i < Model.members.Count; i++)
@@ -59,22 +60,24 @@
     }
     else
     {
-        <div class="whiteSpace">
-            <h4>Власник: @Model.owner.Name</h4>
-            <div class="flex spaceBetween menuBlock">
-                <div class="flex leftMenuBlock"></div>
-                <div class="rightMenuBlock button3 margin-right30px">
-                    <a href="~/Index/TasksInGroup/@ViewData["currentId"]">Завдання</a>
-                </div>
-            </div>
-            @for (int i = 0; i < Model.members.Count; i++)
-            {
-                <div class="flex spaceCenter menuBlock">
-                    <span>@Model.members[i].Name</span>
-                </div>
-            }
-            }
+<div class="whiteSpace"  style="padding-left: 20px;">
+    <h4 class="centerText">Члени групи</h4>
+    <div class="flex spaceBetween menuBlock">
+        <div class="flex leftMenuBlock"></div>
+        <div class="rightMenuBlock button3 margin-right30px">
+            <a class="linksStyle" href="~/Index/TasksInGroup/@ViewData["currentId"]">Завдання</a>
         </div>
+    </div>
+    <h4>Власник: @Model.owner.Name</h4>
+
+    @for (int i = 0; i < Model.members.Count; i++)
+    {
+        <div class="flex spaceCenter menuBlock">
+            <span>@Model.members[i].Name</span>
+        </div>
+    }
+
+</div>
 
     }
 }
@@ -82,6 +85,3 @@ else
 {
     <p>Must Join <a href="~/RegAut/Autoresation">link</a></p>
 }
-
-
-

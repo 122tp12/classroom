@@ -8,68 +8,176 @@
 {
     @if ((bool)ViewData["owned"])
     {
-        @Model.task.Id
-        <br />
-        <p>
-            Name:
-            @Model.task.Name
-        </p>
-        <p>
-            Type:
-            @Model.task.Type
-        </p>
+        <div class="whiteSpace">
+            <h4 class="centerText">Завдання</h4>
+            <div class="flex flexColumn">
+                <div class="centerText" style="width:100%">
+                    Name:
+                    @Model.task.Name
+                </div>
+                <div class="centerText" style="width:100%">
+                    Type:
+                    @Model.task.Type
+                </div>
+                <div class="centerText" style="width:100%">
+                    Description:
+                    @Model.task.Description
+                </div>
+                <div class="centerText">
+                    <a href="~/Index/DownloadTaskFile/@Model.task.Id">@Model.task.FileName</a>
+                </div>
+                <div class="centerText">
+                    <a href="~/Index/ChangeFile/@Model.task.Id">Вибрати новий файл</a>
+                    <a href="~/Index/Reaply/@Model.task.Id">Написати відгук</a>
+                </div>
 
-        <p>
-            Description:
-            @Model.task.Description
-        </p>
-        <a href="~/Index/DownloadTaskFile/@Model.task.Id">@Model.task.FileName</a>
+                <h4 class="centerText">Відгуки:</h4>
 
-        <a href="~/Index/Reaply/@Model.task.Id">Write reaplyes</a>
+                @foreach (Classroom.Reaply r in Model.reaplies)
+                {
+                    <div class="flex spaceBetween menuBlock" style="width:100%">
+                        <div class=" flex leftMenuBlock" style="width:20%">
+                            <div class="margin-right13px margin-left30px">
+                                <span>Користувач:</span>
+                            </div>
+                        </div>
+                        <div class="rightMenuBlock margin-right30px" style="width:80%">
+                            <div>
+                                "@Model.context.Users.Where(n => n.Id == r.IdUser).First().Name"
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex spaceBetween menuBlock" style="width:100%">
+                        <div class=" flex leftMenuBlock" style="width:20%">
+                            <div class="margin-right13px margin-left30px">
+                                <span>Опис:</span>
+                            </div>
+                        </div>
+                        <div class="rightMenuBlock margin-right30px" style="width:80%">
+                            <div>
+                                @r.Description
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex spaceBetween menuBlock" style="width:100%">
+                        <div class=" flex leftMenuBlock" style="width:20%">
+                            <div class="margin-right13px margin-left30px">
+                                <span>Файл:</span>
+                            </div>
+                        </div>
+                        <div class="rightMenuBlock margin-right30px flex" style="width:80%">
+                            <div>
+                                <a href="~/Index/DownloadFile/@r.Id">@r.FileName</a>
+                            </div>
+                            <div class="margin-left30px">
+                                <a href="~/Index/ReaplyDelete/@r.Id"><span class="material-icons deleteButton">delete</span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex spaceBetween menuBlock" style="width:100%">
+                        <div class=" flex leftMenuBlock" style="width:20%">
+                            <div class="margin-right13px margin-left30px">
+                                <span>@r.Mark:</span>
+                            </div>
+                        </div>
+                        <div class="rightMenuBlock margin-right30px flex" style="width:80%">
+                            <form method="post" action="~/Index/SetMark">
+                                <input type="hidden" name="idReaply" value="@r.Id" />
+                                <input type="number" name="mark" value="@r.Mark" />
+                                <input type="submit" value="set mark" />
+                            </form>
+                        </div>
+                    </div>
+                }
 
-        <h4>My reaplyes</h4>
-        <ul>
-            @foreach (Classroom.Reaply r in Model.reaplies)
-            {
-                <li>@r.Id: <span>UserName: "@Model.context.Users.Where(n=>n.Id==r.IdUser).First().Name"</span> @r.Description <a href="~/Index/DownloadFile/@r.Id">@r.FileName</a> <a href="~/Index/ReaplyDelete/@r.Id">(delete)</a> <h5>@r.Mark</h5> 
-                                                                                                                                                 <form method="post" action="~/Index/SetMark">
-                                                                                                                                                     <input type="hidden" name="idReaply" value="@r.Id" />
-                                                                                                                                                     <input type="number" name="mark" value="@r.Mark" />
-                                                                                                                                                     <input type="submit" value="set mark" />
-                                                                                                                                                 </form></li>
-            }
-        </ul>
+            </div>
+        </div>
     }
     else
     {
-        @Model.task.Id
-        <br />
-        <p>
-            Name:
-            @Model.task.Name
-        </p>
-        <p>
-            Type:
-            @Model.task.Type
-        </p>
 
-        <p>
-            Description:
-            @Model.task.Description
-        </p>
-        <a href="~/Index/DownloadTaskFile/@Model.task.Id">@Model.task.FileName</a>
+        <div class="whiteSpace">
+            <h4 class="centerText">Завдання @Model.task.Id</h4>
+            <div class="flex flexColumn">
+                <div class="centerText" style="width:100%">
+                    Name:
+                    @Model.task.Name
+                </div>
+                <div class="centerText" style="width:100%">
+                    Type:
+                    @Model.task.Type
+                </div>
+                <div class="centerText" style="width:100%">
+                    Description:
+                    @Model.task.Description
+                </div>
+                <div class="centerText">
+                    <a href="~/Index/DownloadTaskFile/@Model.task.Id">@Model.task.FileName</a>
+                </div>
+                <div class="centerText">
+                    <a href="~/Index/Reaply/@Model.task.Id">Написати відгук</a>
+                </div>
+                <h4 class="centerText">Відгуки:</h4>
 
-        <a href="~/Index/Reaply/@Model.task.Id">Write reaplyes</a>
-
-        <h4>My reaplyes</h4>
-        <ul>
-            @foreach (Classroom.Reaply r in Model.reaplies)
-            {
-                <li>@r.Id: @r.Description <a href="~/Index/DownloadFile/@r.Id">@r.FileName</a> <a href="~/Index/ReaplyDelete/@r.Id">(delete)</a> <h5>@r.Mark</h5></li>
-            }
-        </ul>
+                @foreach (Classroom.Reaply r in Model.reaplies)
+                {
+                    <div class="flex spaceBetween menuBlock" style="width:100%">
+                        <div class=" flex leftMenuBlock" style="width:20%">
+                            <div class="margin-right13px margin-left30px">
+                                <span>Користувач:</span>
+                            </div>
+                        </div>
+                        <div class="rightMenuBlock margin-right30px" style="width:80%">
+                            <div>
+                                "@Model.context.Users.Where(n => n.Id == r.IdUser).First().Name"
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex spaceBetween menuBlock" style="width:100%">
+                        <div class=" flex leftMenuBlock" style="width:20%">
+                            <div class="margin-right13px margin-left30px">
+                                <span>Опис:</span>
+                            </div>
+                        </div>
+                        <div class="rightMenuBlock margin-right30px" style="width:80%">
+                            <div>
+                                @r.Id: @r.Description
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex spaceBetween menuBlock" style="width:100%">
+                        <div class=" flex leftMenuBlock" style="width:20%">
+                            <div class="margin-right13px margin-left30px">
+                                <span>Файл:</span>
+                            </div>
+                        </div>
+                        <div class="rightMenuBlock margin-right30px flex" style="width:80%">
+                            <div>
+                                <a href="~/Index/DownloadFile/@r.Id">@r.FileName</a>
+                            </div>
+                            <div class="margin-left30px">
+                                <a href="~/Index/ReaplyDelete/@r.Id"><span class="material-icons deleteButton">delete</span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex spaceBetween menuBlock" style="width:100%">
+                        <div class=" flex leftMenuBlock" style="width:20%">
+                            <div class="margin-right13px margin-left30px">
+                                <span>@r.Mark:</span>
+                            </div>
+                        </div>
+                        <div class="rightMenuBlock margin-right30px flex" style="width:80%">
+                            <form method="post" action="~/Index/SetMark">
+                                <input type="hidden" name="idReaply" value="@r.Id" />
+                                <input type="number" name="mark" value="@r.Mark" />
+                                <input type="submit" value="set mark" />
+                            </form>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
     }
-
 }
 else
 {
