@@ -35,7 +35,31 @@ namespace Classroom.Controllers
                 ViewData["joined"] = true;
             }
         }
+        public IActionResult ChangeFile(int id)
+        {
+            @ViewData["id"] = id;
+            return View();
+        }
+        [HttpPost]
+        public IActionResult SaveChangeFile(int id, IFormFile uploadedFile)
+        {
+            Task t=context.Tasks.Where(n => n.Id == id).FirstOrDefault();
+            CreateTaskModel model = new CreateTaskModel(context);
+           
+            try
+            {
+                t.FileName = uploadedFile.FileName;
 
+                int idFile = model.updateTask(t);
+
+                model.SaveFile(uploadedFile, idFile);
+            }
+            catch (Exception ex)
+            {
+                return Content(ex.Message);
+            }
+            return Redirect("~/Index/Task/"+id);
+        }
         //сторінка з тасками
         public IActionResult Index()
         {

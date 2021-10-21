@@ -21,6 +21,14 @@ namespace Classroom.Models.Index
         {
             context.Tasks.Add(t);
             context.SaveChanges();
+
+            return context.Tasks.OrderBy(n => n.Id).Last().Id;
+        }
+        public int updateTask(Task t)
+        {
+            context.Tasks.Update(t);
+            context.SaveChanges();
+
             return context.Tasks.OrderBy(n => n.Id).Last().Id;
         }
         public void SaveFile(IFormFile uploadedFile, int id)
@@ -29,7 +37,7 @@ namespace Classroom.Models.Index
             {
                     using (var fileStream = new FileStream("wwwroot\\tasksFiles\\" + id, FileMode.Create))
                     {
-                    uploadedFile.CopyToAsync(fileStream);
+                    uploadedFile.CopyTo(fileStream);
                     }
             }
         }
