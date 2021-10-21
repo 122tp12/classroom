@@ -31,4 +31,8 @@
     <Folder Include="wwwroot\profilePhoto\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="compilerconfig.json" />
+  </ItemGroup>
+
 </Project>
