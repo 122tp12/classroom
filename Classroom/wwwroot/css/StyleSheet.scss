@@ -56,11 +56,9 @@
     margin: 0 auto;
 }
 
-
 .centerBlock {
     margin: 0 auto;
 }
-
 
 .menuBlock {
     height: 50px;
@@ -127,7 +125,6 @@
     text-align: center;
     color: white;
     font-size: 1em;
-}
 
 .button3 {
     height: 30px;
@@ -138,6 +135,7 @@
     text-align: center;
     color: white;
     font-size: 1em;
+
 }
 
 .button2 {
@@ -155,6 +153,17 @@
     width: 100%;
     background: #fc692a;
     border-bottom: 4px solid #db541a;
+    border-radius: 5px;
+    text-align: center;
+    color: white;
+    font-size: 1em;
+}
+
+.button3 {
+    height: 30px;
+    width: 200px;
+    background: #fc7136;
+    border-bottom: 4px solid #00ffff;
     border-radius: 5px;
     text-align: center;
     color: white;

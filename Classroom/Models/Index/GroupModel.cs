@@ -12,9 +12,11 @@ namespace Classroom.Models.Index
         public List<Task> listTasks;
         public List<User> members;
         public User owner;
+        public int groupId;
         classroomContext context;
-        public GroupModel(classroomContext _context)
+        public GroupModel(classroomContext _context, int _gI)
         {
+            groupId = _gI;
             context = _context;
 
         }
