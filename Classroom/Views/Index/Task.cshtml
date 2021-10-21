@@ -8,8 +8,6 @@
 {
     @if ((bool)ViewData["owned"])
     {
-        @Model.task.Id
-        <br />
         <p>
             Name:
             @Model.task.Name
@@ -24,6 +22,7 @@
             @Model.task.Description
         </p>
         <a href="~/Index/DownloadTaskFile/@Model.task.Id">@Model.task.FileName</a>
+        <a href="~/Index/ChangeFile/@Model.task.Id">Select ne file</a>
 
         <a href="~/Index/Reaply/@Model.task.Id">Write reaplyes</a>
 
@@ -31,7 +30,7 @@
         <ul>
             @foreach (Classroom.Reaply r in Model.reaplies)
             {
-                <li>@r.Id: <span>UserName: "@Model.context.Users.Where(n=>n.Id==r.IdUser).First().Name"</span> @r.Description <a href="~/Index/DownloadFile/@r.Id">@r.FileName</a> <a href="~/Index/ReaplyDelete/@r.Id">(delete)</a> <h5>@r.Mark</h5> 
+                <li>@r.Id: <span>UserName: "@Model.context.Users.Where(n=>n.Id==r.IdUser).First().Name"</span> @r.Description <a href="~/Index/DownloadFile/@r.Id">@r.FileName</a>  <a href="~/Index/ReaplyDelete/@r.Id">(delete)</a> <h5>@r.Mark</h5> 
                                                                                                                                                  <form method="post" action="~/Index/SetMark">
                                                                                                                                                      <input type="hidden" name="idReaply" value="@r.Id" />
                                                                                                                                                      <input type="number" name="mark" value="@r.Mark" />
