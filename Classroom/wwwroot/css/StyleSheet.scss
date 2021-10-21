@@ -125,50 +125,41 @@
     text-align: center;
     color: white;
     font-size: 1em;
-    }
-    .button3 {
-        height: 30px;
-        width: 200px;
-        background: #fc692a;
-        border-bottom: 4px solid #00ffff;
-        border-radius: 5px;
-        text-align: center;
-        color: white;
-        font-size: 1em;
-    }
 
-    .button2 {
-        height: 40px;
-        background: #fac564;
-        border-bottom: 4px solid #e6b800;
-        border-radius: 5px;
-        text-align: center;
-        color: white;
-        font-size: 1em;
-    }
+}
 
-    .downButton {
-        height: 30px;
-        width: 100%;
-        background: #fc692a;
-        border-bottom: 4px solid #db541a;
-        border-radius: 5px;
-        text-align: center;
-        color: white;
-        font-size: 1em;
-    }
+.button3 {
+    height: 30px;
+    width: 200px;
+    background: #fc692a;
+    border-bottom: 4px solid #00ffff;
+    border-radius: 5px;
+    text-align: center;
+    color: white;
+    font-size: 1em;
+}
 
-    /*.button3 {
-        height: 30px;
-        width: 200px;
-        background: #fc7136;
-        border-bottom: 4px solid #00ffff;
-        border-radius: 5px;
-        text-align: center;
-        color: white;
-        font-size: 1em;
-    }*/
+.button2 {
+    height: 40px;
+    background: #fac564;
+    border-bottom: 4px solid #e6b800;
+    border-radius: 5px;
+    text-align: center;
+    color: white;
+    font-size: 1em;
+}
 
-    .flexColumn {
-        flex-direction: column;
-    }
+.downButton {
+    height: 30px;
+    width: 100%;
+    background: #fc692a;
+    border-bottom: 4px solid #db541a;
+    border-radius: 5px;
+    text-align: center;
+    color: white;
+    font-size: 1em;
+}
+
+.flexColumn {
+    flex-direction: column;
+}
