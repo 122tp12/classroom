@@ -2,29 +2,6 @@
 @{
     Layout = "_Layout";
 }
-<div class="flex spaceBetween menuBlock">
-    <div class="leftMenuBlock">
-        <ul class=" flex button2 menuUlStyle">
-            <li class="menuLiStyle menuText"><a class="aStyle" href="~/"><span class="yellowText">Me</span><span class="orangeText">nu</span></a></li>
-        </ul>
-    </div>
-    <div class="rightMenuBlock">
-        <ul class="flex menuUlStyle">
-            @if ((bool)ViewData["joined"] == false)
-            {
-                <li class="menuLiStyle margin-left13px button2 menuText"><a class="aStyle" href="~/RegAut/Autoresation"><span class="orangeText">Lo</span><span class="yellowText">g</span><span class="blueText">in</span></a></li>
-            }
-            else
-            {
-                <li class="menuLiStyle margin-right13px button2 menuText"><a class="aStyle" href="~/UserProfile/"><span class="blueText">Pr</span><span class="yellowText">of</span><span class="orangeText">ile</span></a></li>
-                <li class="menuLiStyle margin-right13px button2 menuText"><a class="aStyle" href="~/RegAut/Exit"><span class="orangeText">Lo</span><span class="yellowText">g o</span><span class="orangeText">ut</span></a></li>
-
-            }
-
-        </ul>
-    </div>
-</div>
-<div class="anderMenuLine"></div>
 
 @if ((bool)ViewData["joined"] != false)
 
@@ -87,6 +64,6 @@
         }
         else
         {
-
+    <img src="~/profilePhoto/1.jpg"/>
         }
 

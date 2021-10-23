@@ -134,6 +134,7 @@ namespace Classroom.Controllers
 
             GroupModel model = new GroupModel(context, id);
             bool owned=model.getTasks(id, accessor.HttpContext.Session.GetInt32("user").Value);//тут має бути id групи, яка буде братись get запроса
+            model.getGroup(id);
             ViewData["owned"] = owned;
             return View(model);
         }
@@ -216,8 +217,15 @@ namespace Classroom.Controllers
             
             ReaplyModel model = new ReaplyModel(context);
 
-            int idFile=model.saveReaply(new Reaply() { Description = description, IdTask = id, IdUser = userId, FileName = uploadedFile.FileName });
-            model.SaveFile(uploadedFile,idFile);
+            if (uploadedFile != null)
+            {
+                int idFile = model.saveReaply(new Reaply() { Description = description, IdTask = id, IdUser = userId, FileName = uploadedFile.FileName });
+                model.SaveFile(uploadedFile, idFile);
+            }
+            else
+            {
+                model.saveReaply(new Reaply() { Description = description, IdTask = id, IdUser = userId });
+            }
             
             return Redirect("~/Index/Task/" + id);
         }

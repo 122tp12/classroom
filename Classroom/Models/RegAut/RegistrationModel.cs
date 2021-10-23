@@ -15,10 +15,12 @@ namespace Classroom.Models.RegAut
         {
             context = _context;
         }
-        public void saveUser(User user)
+        public int saveUser(User user)
         {
             context.Users.Add(user);
             context.SaveChanges();
+            User u = context.Users.OrderBy(n => n.Id).Last();
+            return u.Id;
         }
     }
 }

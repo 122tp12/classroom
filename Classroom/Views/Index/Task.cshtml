@@ -42,9 +42,11 @@
                             </div>
                         </div>
                         <div class="rightMenuBlock margin-right30px" style="width:80%">
-                            <div>
+
+                            <span style="position: relative; bottom: 32px;">
                                 "@Model.context.Users.Where(n => n.Id == r.IdUser).First().Name"
-                            </div>
+                            </span>
+                            <img src="~/profilePhoto/@{@Model.context.Users.Where(n => n.Id == r.IdUser).First().Id}.jpg" class="avatar" />
                         </div>
                     </div>
                     <div class="flex spaceBetween menuBlock" style="width:100%">
@@ -128,9 +130,11 @@
                             </div>
                         </div>
                         <div class="rightMenuBlock margin-right30px" style="width:80%">
-                            <div>
+
+                            <span style="position: relative; bottom: 32px;">
                                 "@Model.context.Users.Where(n => n.Id == r.IdUser).First().Name"
-                            </div>
+                            </span>
+                            <img src="~/profilePhoto/@{@Model.context.Users.Where(n => n.Id == r.IdUser).First().Id}.jpg" class="avatar" />
                         </div>
                     </div>
                     <div class="flex spaceBetween menuBlock" style="width:100%">

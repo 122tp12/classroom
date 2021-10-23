@@ -19,10 +19,16 @@ namespace Classroom.Models.UserProfile
         public void getUser(int _userId)
         {
             user=context.Users.Where(n => n.Id == _userId).FirstOrDefault();
-            user.Name=user.Name.Trim();
-            user.Description = user.Description.Trim();
-            user.Password = user.Password.Trim();
-            user.Email = user.Email.Trim();
+            try
+            {
+                user.Name = user.Name.Trim();
+                user.Description = user.Description.Trim();
+                user.Password = user.Password.Trim();
+                user.Email = user.Email.Trim();
+            } catch(Exception ex)
+            {
+
+            }
         }
         public void SaveFile(IFormFile uploadedFile, int id)
         {

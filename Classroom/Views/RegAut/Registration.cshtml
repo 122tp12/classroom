@@ -1,5 +1,5 @@
 ﻿<a href="/RegAut/Autoresation">back</a>
-<form class="decor" action="/RegAut/RegistrationSave" method="post">
+<form class="decor" action="/RegAut/RegistrationSave" method="post" enctype="multipart/form-data">
     <div class="form-left-decoration"></div>
     <div class="form-right-decoration"></div>
     <div class="circle"></div>
@@ -8,19 +8,19 @@
         <br />
 
         <label>Логін</label>
-        <input type="text" name="name" placeholder="Username">
+        <input type="text" name="name" placeholder="Username" required="required">
 
         <label>Пароль</label>
-        <input type="password" name="password" placeholder="Password">
+        <input type="password" name="password" placeholder="Password" required="required">
 
         <label>Електронна адреса</label>
-        <input type="email" name="email" placeholder="email">
+        <input type="email" name="email" placeholder="email" required="required">
+        <label>Аватарка</label>
+        <input type="file" name="file" placeholder="file">
 
-        <label>Картинка</label>
-        <input type="text" name="img" placeholder="img">
 
         <label>Опис</label>
-        <input type="text" name="description" placeholder="description">
+        <input type="text" name="description" placeholder="description" required="required">
         <input type="submit" value="Зареєструватися">
     </div>
 </form>
