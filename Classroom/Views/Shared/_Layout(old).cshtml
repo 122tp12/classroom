@@ -18,12 +18,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@300&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header style="display:flex; justify-content: center;">
-        <br />
-        <img src="Images\Logo.png" height="200" />
+    <header>
+        <nav>
+            <div class="centerText logoText logoBackground logoBlock">
+                <div class="logoTextBlock">
+                    <span class="blueText">Cla</span><span class="yellowText">ssr</span><span class="orangeText">oom</span>
+                </div>
+            </div>
+        </nav>
     </header>
+    <div class="anderMenuLine"></div>
     <div class="MenuContent" style="min-height: 650px">
         <main role="main" class="">
+
             <div class="flex spaceBetween menuBlock">
                 <div class="leftMenuBlock">
                     <ul class=" flex button2 menuUlStyle">
@@ -34,20 +41,20 @@
                     <ul class="flex menuUlStyle">
                         @if (ViewData["joined"] != null)
                         {
-                        @if ((bool)ViewData["joined"] == false)
+                            @if ((bool)ViewData["joined"] == false)
                             {
-                        <li class="menuLiStyle margin-left13px button2 menuText"><a class="aStyle" href="~/RegAut/Autoresation"><span class="orangeText">Lo</span><span class="yellowText">g</span><span class="blueText">in</span></a></li>
+                                <li class="menuLiStyle margin-left13px button2 menuText"><a class="aStyle" href="~/RegAut/Autoresation"><span class="orangeText">Lo</span><span class="yellowText">g</span><span class="blueText">in</span></a></li>
                             }
                             else
                             {
-                        <li class="menuLiStyle margin-right13px button2 menuText"><a class="aStyle" href="~/UserProfile/"><span class="blueText">Pr</span><span class="yellowText">of</span><span class="orangeText">ile</span></a></li>
-                        <li class="menuLiStyle margin-right13px button2 menuText"><a class="aStyle" href="~/RegAut/Exit"><span class="orangeText">Lo</span><span class="yellowText">g o</span><span class="orangeText">ut</span></a></li>
+                                <li class="menuLiStyle margin-right13px button2 menuText"><a class="aStyle" href="~/UserProfile/"><span class="blueText">Pr</span><span class="yellowText">of</span><span class="orangeText">ile</span></a></li>
+                                <li class="menuLiStyle margin-right13px button2 menuText"><a class="aStyle" href="~/RegAut/Exit"><span class="orangeText">Lo</span><span class="yellowText">g o</span><span class="orangeText">ut</span></a></li>
 
                             }
                         }
             else
             {
-                        <li class="menuLiStyle margin-left13px button2 menuText"><a class="aStyle" href="~/RegAut/Autoresation"><span class="orangeText">Lo</span><span class="yellowText">g</span><span class="blueText">in</span></a></li>
+                    <li class="menuLiStyle margin-left13px button2 menuText"><a class="aStyle" href="~/RegAut/Autoresation"><span class="orangeText">Lo</span><span class="yellowText">g</span><span class="blueText">in</span></a></li>
             }
 
 
@@ -62,7 +69,7 @@
 
     <footer class="">
         <div class="" style="width:100%; height:100px;">
-            <h4 style="text-align: center; padding-top: -800px; color: black;">Copyright ©2021 All rights reserved | This template is made with  by MyTeam</h4>
+            <h4 style="text-align: center; padding-top: 50px; color: #fac564;">Copyright ©2021 All rights reserved | This template is made with  by MyTeam</h4>
         </div>
     </footer>
 </body>
