@@ -27,8 +27,12 @@
                     <a href="~/Index/DownloadTaskFile/@Model.task.Id">@Model.task.FileName</a>
                 </div>
                 <div class="centerText">
-                    <a href="~/Index/ChangeFile/@Model.task.Id">Вибрати новий файл</a>
-                    <a href="~/Index/Reaply/@Model.task.Id">Написати відгук</a>
+                    <div class="button">
+                        <a class="linksStyle" href="~/Index/ChangeFile/@Model.task.Id">Вибрати новий файл</a>
+                    </div>
+                    <div class="button">
+                        <a class="linksStyle" href="~/Index/Reaply/@Model.task.Id">Написати відгук</a>
+                    </div>
                 </div>
 
                 <h4 class="centerText">Відгуки:</h4>
