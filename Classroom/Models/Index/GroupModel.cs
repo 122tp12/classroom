@@ -12,6 +12,7 @@ namespace Classroom.Models.Index
         public List<Task> listTasks;
         public List<User> members;
         public User owner;
+        public Group group;
         public int groupId;
         classroomContext context;
         public GroupModel(classroomContext _context, int _gI)
@@ -19,6 +20,10 @@ namespace Classroom.Models.Index
             groupId = _gI;
             context = _context;
 
+        }
+        public void getGroup(int _idGroup)
+        {
+            group = context.Groups.Where(n => n.Id == _idGroup).FirstOrDefault();
         }
         public bool getTasks(int _idGroup, int _idUser)
         {

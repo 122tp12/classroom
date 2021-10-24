@@ -20,6 +20,8 @@ namespace Classroom.Models.Index
         {
             
             task = context.Tasks.Where(n => n.Id == _idTask).First();
+           
+                    
             if (context.Groups.Where(n=>n.Id== task.IdGroup).First().IdOwner == _ownerId)
             {
                 return true;

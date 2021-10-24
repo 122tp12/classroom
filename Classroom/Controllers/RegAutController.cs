@@ -1,4 +1,5 @@
 ﻿using Classroom.Models.RegAut;
+using Classroom.Models.UserProfile;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -19,9 +20,20 @@ namespace Classroom.Controllers
             accessor = _accessor;
             
         }
-
+        private void startUp()
+        {
+            if (accessor.HttpContext.Session.GetInt32("user") == null)
+            {
+                ViewData["joined"] = false;
+            }
+            else
+            {
+                ViewData["joined"] = true;
+            }
+        }
         public IActionResult Registration()
         {
+            startUp();
             return View();
         }
         public IActionResult Exit()
@@ -30,18 +42,26 @@ namespace Classroom.Controllers
             return Redirect("~/");
         }
         [HttpPost]
-        public IActionResult RegistrationSave(String name, String password, String email, String description)
+        public IActionResult RegistrationSave(String name, String password, String email, String description, IFormFile file)
         {
             User u = new User() { Name=name, Password=password, Email=email, Description=description};
-
+            
             RegistrationModel model = new RegistrationModel(context);
 
-            model.saveUser(u);
+            int id=model.saveUser(u);
+
+            if (file != null)
+            {
+                ProfileModel uploadModel = new ProfileModel(context);
+                uploadModel.SaveFile(file, id);
+            }
+
             return Redirect("~/RegAut/Autoresation");
         }
 
         public IActionResult Autoresation()
         {
+            startUp();
             return View();
         }
         [HttpPost]

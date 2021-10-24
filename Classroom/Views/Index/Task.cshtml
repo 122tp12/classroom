@@ -27,8 +27,12 @@
                     <a href="~/Index/DownloadTaskFile/@Model.task.Id">@Model.task.FileName</a>
                 </div>
                 <div class="centerText">
-                    <a href="~/Index/ChangeFile/@Model.task.Id">Вибрати новий файл</a>
-                    <a href="~/Index/Reaply/@Model.task.Id">Написати відгук</a>
+                    <div class="button">
+                        <a class="linksStyle" href="~/Index/ChangeFile/@Model.task.Id">Вибрати новий файл</a>
+                    </div>
+                    <div class="button">
+                        <a class="linksStyle" href="~/Index/Reaply/@Model.task.Id">Написати відгук</a>
+                    </div>
                 </div>
 
                 <h4 class="centerText">Відгуки:</h4>
@@ -42,9 +46,11 @@
                             </div>
                         </div>
                         <div class="rightMenuBlock margin-right30px" style="width:80%">
-                            <div>
+
+                            <span style="position: relative; bottom: 32px;">
                                 "@Model.context.Users.Where(n => n.Id == r.IdUser).First().Name"
-                            </div>
+                            </span>
+                            <img src="~/profilePhoto/@{@Model.context.Users.Where(n => n.Id == r.IdUser).First().Id}.jpg" class="avatar" />
                         </div>
                     </div>
                     <div class="flex spaceBetween menuBlock" style="width:100%">
@@ -84,7 +90,7 @@
                             <form method="post" action="~/Index/SetMark">
                                 <input type="hidden" name="idReaply" value="@r.Id" />
                                 <input type="number" name="mark" value="@r.Mark" />
-                                <input type="submit" value="set mark" />
+                                <input class="button" type="submit" value="set mark" />
                             </form>
                         </div>
                     </div>
@@ -128,9 +134,11 @@
                             </div>
                         </div>
                         <div class="rightMenuBlock margin-right30px" style="width:80%">
-                            <div>
+
+                            <span style="position: relative; bottom: 32px;">
                                 "@Model.context.Users.Where(n => n.Id == r.IdUser).First().Name"
-                            </div>
+                            </span>
+                            <img src="~/profilePhoto/@{@Model.context.Users.Where(n => n.Id == r.IdUser).First().Id}.jpg" class="avatar" />
                         </div>
                     </div>
                     <div class="flex spaceBetween menuBlock" style="width:100%">
@@ -166,18 +174,12 @@
                                 <span>@r.Mark:</span>
                             </div>
                         </div>
-                        <div class="rightMenuBlock margin-right30px flex" style="width:80%">
-                            <form method="post" action="~/Index/SetMark">
-                                <input type="hidden" name="idReaply" value="@r.Id" />
-                                <input type="number" name="mark" value="@r.Mark" />
-                                <input type="submit" value="set mark" />
-                            </form>
-                        </div>
-                    </div>
+                    </div> 
+
                 }
             </div>
         </div>
-    }
+}
 }
 else
 {

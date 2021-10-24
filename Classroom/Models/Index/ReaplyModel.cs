@@ -30,14 +30,10 @@ namespace Classroom.Models.Index
             if (uploadedFile != null)
             {
                 string path =  uploadedFile.FileName;
-                Thread t = new Thread(new ParameterizedThreadStart((object o)=> {
-                    IFormFile fileFrom = (IFormFile)o;
                     using (var fileStream = new FileStream("wwwroot\\usersFiles\\" + id, FileMode.Create))
                     {
-                        fileFrom.CopyToAsync(fileStream);
+                        uploadedFile.CopyToAsync(fileStream);
                     }
-                }));
-                t.Start(uploadedFile);
                 // сохраняем файл в папку Files в каталоге wwwroot
             }
         }

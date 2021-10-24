@@ -19,10 +19,21 @@ namespace Classroom.Controllers
             accessor = _accessor;
 
         }
-        
+        private void startUp()
+        {
+            if (accessor.HttpContext.Session.GetInt32("user") == null)
+            {
+                ViewData["joined"] = false;
+            }
+            else
+            {
+                ViewData["joined"] = true;
+            }
+        }
         //інформація профіля
         public IActionResult Index()
         {
+            startUp();
             ProfileModel model = new ProfileModel(_context);
             model.getUser(accessor.HttpContext.Session.GetInt32("user").Value);
             return View(model);

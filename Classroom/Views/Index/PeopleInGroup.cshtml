@@ -4,29 +4,6 @@
     Layout = "_Layout";
 }
 
-<div class="flex spaceBetween menuBlock">
-    <div class="leftMenuBlock">
-        <ul class=" flex button2 menuUlStyle">
-            <li class="menuLiStyle menuText"><a class="aStyle" href=""><span class="yellowText">Me</span><span class="orangeText">nu</span></a></li>
-        </ul>
-    </div>
-    <div class="rightMenuBlock">
-        <ul class="flex menuUlStyle">
-            @if ((bool)ViewData["joined"] == false)
-            {
-                <li class="menuLiStyle button2 menuText"><a class="aStyle" href="~/RegAut/Autoresation"><span class="orangeText">Lo</span><span class="yellowText">g</span><span class="blueText">in</span></a></li>
-            }
-            else
-            {
-                <li class="menuLiStyle button2 menuText"><a class="aStyle" href="~/UserProfile/"><span class="blueText">Pr</span><span class="yellowText">of</span><span class="orangeText">ile</span></a></li>
-                <li class="menuLiStyle button2 menuText"><a class="aStyle" href="~/RegAut/Exit"><span class="orangeText">Lo</span><span class="yellowText">g o</span><span class="orangeText">ut</span></a></li>
-
-            }
-
-        </ul>
-    </div>
-</div>
-<div class="anderMenuLine"></div>
 
 @if ((bool)ViewData["joined"] != false)
 {
@@ -34,13 +11,15 @@
     {
         <div class="whiteSpace" style="padding-left: 20px;">
             <h4 class="centerText">Члени групи</h4>
+
+            <h4 class="centerText">Власник: @Model.owner.Name</h4>
+
             <div class="flex spaceBetween menuBlock">
                 <div class="flex leftMenuBlock"></div>
                 <div class="rightMenuBlock button3 margin-right30px">
                     <a class="linksStyle" href="~/Index/TasksInGroup/@ViewData["currentId"]">Завдання</a>
                 </div>
             </div>
-            <h4>Власник: @Model.owner.Name</h4>
 
 
 
@@ -52,7 +31,7 @@
                         <input type="hidden" name="groupId" value="@ViewData["currentId"]" />
                         <input class="deleteButton material-icons" style="border: 0px; background: white;" type="submit" value="delete" />
                     </form>
-                    <span>@Model.members[i].Name</span>
+                    <img src="~/profilePhoto/@{@Model.members[i].Id}.jpg" class="avatar"/><span>@Model.members[i].Name</span>
                 </div>
 
             }
@@ -60,12 +39,14 @@
     }
     else
     {
+
 <div class="whiteSpace"  style="padding-left: 20px;">
     <h4 class="centerText">Члени групи</h4>
     <div class="flex spaceBetween menuBlock">
         <div class="flex leftMenuBlock"></div>
         <div class="rightMenuBlock button3 margin-right30px">
             <a class="linksStyle" href="~/Index/TasksInGroup/@ViewData["currentId"]">Завдання</a>
+
         </div>
     </div>
     <h4>Власник: @Model.owner.Name</h4>
@@ -73,7 +54,7 @@
     @for (int i = 0; i < Model.members.Count; i++)
     {
         <div class="flex spaceCenter menuBlock">
-            <span>@Model.members[i].Name</span>
+            <img src="~/profilePhoto/@{@Model.members[i].Id}.jpg" class="avatar"/><span>@Model.members[i].Name</span>
         </div>
     }
 
