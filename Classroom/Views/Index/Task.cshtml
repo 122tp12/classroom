@@ -170,10 +170,11 @@
                                 <span>Оцінка:</span>
                             </div>
                         </div>
+                       
                         <div class="rightMenuBlock margin-right30px flex" style="width:80%">
                             <form method="post" action="~/Index/SetMark">
                                 <input type="hidden" name="idReaply" value="@r.Id" />
-                                <input type="number" name="mark" value="@r.Mark" />
+                                @*отут треба if*@<input type="number" name="mark" value="@r.Mark" />
                                 <input type="submit" value="set mark" />
                             </form>
                         </div>
