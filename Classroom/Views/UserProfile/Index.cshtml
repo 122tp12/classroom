@@ -8,19 +8,19 @@
     <div class="form-inner centerText">
         <h3 style="text-align: center;">Мій профіль</h3>
         <br />
-        <label>Name</label>
-        <input type="text" name="name" placeholder="name" value="@Model.user.Name" />
+        <label>Ім'я</label>
+        <input type="text" name="name" placeholder="Ім'я" value="@Model.user.Name" />
 
-        <label>Description</label>
-        <input type="text" name="description" placeholder="description" value="@Model.user.Description" />
+        <label>Опис</label>
+        <input type="text" name="description" placeholder="Опис" value="@Model.user.Description" />
 
-        <label>Email</label>
-        <input type="text" name="email" placeholder="email" value="@Model.user.Email" />
+        <label>Пошта</label>
+        <input type="text" name="email" placeholder="Пошта" value="@Model.user.Email" />
 
-        <label>Password</label>
-        <input type="password" name="password" placeholder="password" value="@Model.user.Password" />
+        <label>Пароль</label>
+        <input type="password" name="password" placeholder="Пароль" value="@Model.user.Password" />
 
-        <label>Img</label>
+        <label>Картинка</label>
         <input type="file" name="img" value="@Model.user.Password" />
         <img width="150px" height="150px" src="~/profilePhoto/@{ @Model.user.Id}.jpg" />
 
